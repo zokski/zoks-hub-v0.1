@@ -1,46 +1,292 @@
--- Thank you for using my gui
--- Made with love by zok#0001
+-- Thank you for using zok's menu
+-- Made with love from sniper_zok // zok#0001
+
+-- Main
 
 local plr = game.Players.LocalPlayer
+local mouse = plr:GetMouse()
 local plrGui = plr:FindFirstChild("PlayerGui")
 
+-- Gui
+
 local gui = Instance.new("ScreenGui", plrGui)
-gui.Name = "zok's hub v0.1"
+gui.Name = "zok's menu v0.1"
+gui.ResetOnSpawn = false
 
-local main = Instance.new("Frame", gui)
-main.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
-main.AnchorPoint = Vector2.new(0.5, 0.5)
-main.Position = UDim2.new(0.5, 0, 0.5, 0)
-main.Size = UDim2.new(0.4, 0, 0.4, 0)
-main.Active = true
-main.Draggable = true
+local mainFrame = Instance.new("Frame", gui)
+mainFrame.Name = "MainFrame"
+mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+mainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
+mainFrame.Size = UDim2.new(0.385, 0, 0.4, 0)
+mainFrame.BackgroundColor3 = Color3.fromRGB(30,33,36)
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.ZIndex = 1
 
-local mainCorner = Instance.new("UICorner", main)
-mainCorner.CornerRadius = UDim.new(0, 12)
+-- Topbar
 
-local title = Instance.new("TextLabel", main)
-title.Position = UDim2.new(0, 0, 0.02, 0)
-title.Size = UDim2.new(1, 0, 0.08, 0)
-title.BackgroundTransparency = 1
-title.Text = "zok's hub v0.1"
-title.Font = "FredokaOne"
-title.TextColor3 = Color3.fromRGB(255, 255, 255)
-title.TextScaled = true
+local topbarFrame = Instance.new("Frame", mainFrame)
+topbarFrame.Name = "TopbarFrame"
+topbarFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+topbarFrame.Position = UDim2.new(0.5, 0, 0.065, 0)
+topbarFrame.Size = UDim2.new(1, 0, 0.13, 0)
+topbarFrame.BackgroundColor3 = Color3.fromRGB(30,33,36)
+topbarFrame.ZIndex = 2
 
-local close = Instance.new("TextButton", main)
-close.Position = UDim2.new(0.95, 0, 0.027, 0)
-close.Size = UDim2.new(0.037, 0, 0.063, 0)
-close.BackgroundColor3 = Color3.fromRGB(255, 92, 92)
-close.Text = " "
+local titleLabel = Instance.new("TextLabel", topbarFrame)
+titleLabel.Name = "Title"
+titleLabel.BackgroundTransparency = 1
+titleLabel.Position = UDim2.new(0, 0, 0.165, 0)
+titleLabel.Size = UDim2.new(1, 0, 0.7, 0)
+titleLabel.Text = gui.Name
+titleLabel.Font = "FredokaOne"
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.TextScaled = true
+titleLabel.ZIndex = 3
 
-local closeCorner = Instance.new("UICorner", close)
-closeCorner.CornerRadius = UDim.new(0, 20)
+-- Topbar Buttons
 
-local collapse = Instance.new("TextButton", main)
-collapse.Position = UDim2.new(0.9, 0, 0.027, 0)
-collapse.Size = UDim2.new(0.037, 0, 0.063, 0)
-collapse.BackgroundColor3 = Color3.fromRGB(255, 213, 44)
-collapse.Text = " "
+local closeButton = Instance.new("TextButton", topbarFrame)
+closeButton.Name = "Close"
+closeButton.Position = UDim2.new(0.957, 0, 0.2, 0)
+closeButton.Size = UDim2.new(0.03, 0, 0.553, 0)
+closeButton.BackgroundColor3 = Color3.fromRGB(255, 92, 92)
+closeButton.Text = " "
+closeButton.ZIndex = 3
 
-local collapseCorner = Instance.new("UICorner", collapse)
-collapseCorner.CornerRadius = UDim.new(0, 20)
+local minimizeButton = Instance.new("TextButton", topbarFrame)
+minimizeButton.Name = "Minimize"
+minimizeButton.Position = UDim2.new(0.912, 0, 0.2, 0)
+minimizeButton.Size = UDim2.new(0.03, 0, 0.553, 0)
+minimizeButton.BackgroundColor3 = Color3.fromRGB(255, 213, 44)
+minimizeButton.Text = " "
+minimizeButton.ZIndex = 3
+
+local openButton = Instance.new("TextButton", topbarFrame)
+openButton.Name = "Open"
+openButton.Position = UDim2.new(0.867, 0, 0.2, 0)
+openButton.Size = UDim2.new(0.03, 0, 0.553, 0)
+openButton.BackgroundColor3 = Color3.fromRGB(135, 255, 83)
+openButton.Text = " "
+openButton.ZIndex = 3
+
+-- Settings Frame
+
+local settingsFrame = Instance.new("Frame", mainFrame)
+settingsFrame.Name = "SettingsFrame"
+settingsFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+settingsFrame.Position = UDim2.new(0.5, 0, 0.55, 0)
+settingsFrame.Size = UDim2.new(0.975, 0, 0.85, 0)
+settingsFrame.BackgroundTransparency = 1
+settingsFrame.ZIndex = 2
+
+-- Player Settings
+
+local plrSettings = Instance.new("Frame", settingsFrame)
+plrSettings.Name = "PlayerSettings"
+plrSettings.Position = UDim2.new(0, 0, 0, 0)
+plrSettings.Size = UDim2.new(0.429, 0, 1, 0)
+plrSettings.BackgroundColor3 = Color3.fromRGB(46, 49, 54)
+plrSettings.ZIndex = 3
+
+local plrSettingsTitle = Instance.new("TextLabel", plrSettings)
+plrSettingsTitle.Name = "Title"
+plrSettingsTitle.Position = UDim2.new(0, 0, 0.025, 0)
+plrSettingsTitle.Size = UDim2.new(1, 0, 0.085, 0)
+plrSettingsTitle.BackgroundTransparency = 1
+plrSettingsTitle.ZIndex = 4
+plrSettingsTitle.Text = "Player Settings"
+plrSettingsTitle.Font = "FredokaOne"
+plrSettingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+plrSettingsTitle.TextScaled = true
+
+local plrSettingsFrame = Instance.new("ScrollingFrame", plrSettings)
+plrSettingsFrame.Name = "PlayerSettingsFrame"
+plrSettingsFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+plrSettingsFrame.Position = UDim2.new(0.5, 0, 0.56, 0)
+plrSettingsFrame.Size = UDim2.new(1, 0, 0.85, 0)
+plrSettingsFrame.BackgroundTransparency = 1
+plrSettingsFrame.BorderSizePixel = 0
+plrSettingsFrame.ZIndex = 4
+plrSettingsFrame.CanvasSize = UDim2.new(0, 0, 1, 0)
+plrSettingsFrame.ScrollBarImageColor3 = Color3.fromRGB(30, 33, 36)
+plrSettingsFrame.ScrollBarThickness = 10
+
+local confirmPlrSettings = Instance.new("TextButton", plrSettings)
+confirmPlrSettings.Name = "Confirm"
+confirmPlrSettings.Position = UDim2.new(0.909, 0, 0.023, 0)
+confirmPlrSettings.Size = UDim2.new(0.07, 0, 0.08, 0)
+confirmPlrSettings.BackgroundColor3 = Color3.fromRGB(135, 255, 83)
+confirmPlrSettings.ZIndex = 4
+confirmPlrSettings.Text = " "
+
+local walkSpeedFrame = Instance.new("Frame", plrSettingsFrame)
+walkSpeedFrame.Name = "WalkSpeed"
+walkSpeedFrame.Position = UDim2.new(0, 0, 0, 0)
+walkSpeedFrame.Size = UDim2.new(1, 0, 0.1, 0)
+walkSpeedFrame.BackgroundTransparency = 1
+walkSpeedFrame.ZIndex = 5
+
+local jumpPowerFrame = Instance.new("Frame", plrSettingsFrame)
+jumpPowerFrame.Name = "JumpPower"
+jumpPowerFrame.Position = UDim2.new(0, 0, 0.125, 0)
+jumpPowerFrame.Size = UDim2.new(1, 0, 0.1, 0)
+jumpPowerFrame.BackgroundTransparency = 1
+jumpPowerFrame.ZIndex = 5
+
+local walkSpeedTextBox = Instance.new("TextBox", walkSpeedFrame)
+walkSpeedTextBox.Position = UDim2.new(0.6, 0, 0, 0)
+walkSpeedTextBox.Size = UDim2.new(0.335, 0, 1, 0)
+walkSpeedTextBox.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+walkSpeedTextBox.Text = ""
+walkSpeedTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+walkSpeedTextBox.PlaceholderText = "16"
+walkSpeedTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+walkSpeedTextBox.Font = "FredokaOne"
+walkSpeedTextBox.TextScaled = true
+walkSpeedTextBox.ZIndex = 6
+
+local jumpPowerTextBox = Instance.new("TextBox", jumpPowerFrame)
+jumpPowerTextBox.Position = UDim2.new(0.6, 0, 0, 0)
+jumpPowerTextBox.Size = UDim2.new(0.335, 0, 1, 0)
+jumpPowerTextBox.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+jumpPowerTextBox.Text = ""
+jumpPowerTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+jumpPowerTextBox.PlaceholderText = "50"
+jumpPowerTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+jumpPowerTextBox.Font = "FredokaOne"
+jumpPowerTextBox.TextScaled = true
+jumpPowerTextBox.ZIndex = 6
+
+local walkSpeedTitle = Instance.new("TextLabel", walkSpeedFrame)
+walkSpeedTitle.Position = UDim2.new(0.025, 0, 0, 0)
+walkSpeedTitle.Size = UDim2.new(0.55, 0, 1, 0)
+walkSpeedTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+walkSpeedTitle.Text = "WalkSpeed:"
+walkSpeedTitle.Font = "FredokaOne"
+walkSpeedTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+walkSpeedTitle.TextScaled = true
+walkSpeedTitle.ZIndex = 6
+
+local jumpPowerTitle = Instance.new("TextLabel", jumpPowerFrame)
+jumpPowerTitle.Position = UDim2.new(0.025, 0, 0, 0)
+jumpPowerTitle.Size = UDim2.new(0.55, 0, 1, 0)
+jumpPowerTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+jumpPowerTitle.Text = "JumpPower:"
+jumpPowerTitle.Font = "FredokaOne"
+jumpPowerTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+jumpPowerTitle.TextScaled = true
+jumpPowerTitle.ZIndex = 6
+
+-- Menu Settings
+
+local menuSettings = Instance.new("Frame", settingsFrame)
+menuSettings.Name = "MenuSettings"
+menuSettings.Position = UDim2.new(0.443, 0, 0, 0)
+menuSettings.Size = UDim2.new(0.557, 0, 1, 0)
+menuSettings.BackgroundColor3 = Color3.fromRGB(46, 49, 54)
+menuSettings.ZIndex = 3
+
+local menuSettingsTitle = Instance.new("TextLabel", menuSettings)
+menuSettingsTitle.Name = "Title"
+menuSettingsTitle.Position = UDim2.new(0, 0, 0.025, 0)
+menuSettingsTitle.Size = UDim2.new(1, 0, 0.085, 0)
+menuSettingsTitle.BackgroundTransparency = 1
+menuSettingsTitle.ZIndex = 4
+menuSettingsTitle.Text = "Menu Settings"
+menuSettingsTitle.Font = "FredokaOne"
+menuSettingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+menuSettingsTitle.TextScaled = true
+
+local confirmMenuSettings = Instance.new("TextButton", menuSettings)
+confirmMenuSettings.Name = "Confirm"
+confirmMenuSettings.Position = UDim2.new(0.924, 0, 0.023, 0)
+confirmMenuSettings.Size = UDim2.new(0.055, 0, 0.081, 0)
+confirmMenuSettings.BackgroundColor3 = Color3.fromRGB(135, 255, 83)
+confirmMenuSettings.ZIndex = 4
+confirmMenuSettings.Text = " "
+
+-- UI Addons
+
+local mainFrameCorner = Instance.new("UICorner", mainFrame)
+mainFrameCorner.CornerRadius = UDim.new(0, 12)
+
+local topbarFrameCorner = Instance.new("UICorner", topbarFrame)
+topbarFrameCorner.CornerRadius = UDim.new(0, 12)
+
+local closeButtonCorner = Instance.new("UICorner", closeButton)
+closeButtonCorner.CornerRadius = UDim.new(0, 20)
+
+local minimizeButtonCorner = Instance.new("UICorner", minimizeButton)
+minimizeButtonCorner.CornerRadius = UDim.new(0, 20)
+
+local openButtonCorner = Instance.new("UICorner", openButton)
+openButtonCorner.CornerRadius = UDim.new(0, 20)
+
+local settingsFrameCorner = Instance.new("UICorner", settingsFrame)
+settingsFrameCorner.CornerRadius = UDim.new(0, 10)
+
+local plrSettingsCorner = Instance.new("UICorner", plrSettings)
+plrSettingsCorner.CornerRadius = UDim.new(0, 10)
+
+local plrSettingsStroke = Instance.new("UIStroke", plrSettings)
+plrSettingsStroke.Color = Color3.fromRGB(30, 33, 36)
+plrSettingsStroke.ApplyStrokeMode = "Border"
+plrSettingsStroke.Thickness = 5
+
+local menuSettingsCorner = Instance.new("UICorner", menuSettings)
+menuSettingsCorner.CornerRadius = UDim.new(0, 10)
+
+local menuSettingsStroke = Instance.new("UIStroke", menuSettings)
+menuSettingsStroke.Color = Color3.fromRGB(30, 33, 36)
+menuSettingsStroke.ApplyStrokeMode = "Border"
+menuSettingsStroke.Thickness = 5
+
+local confirmPlrSettingsCorner = Instance.new("UICorner", confirmPlrSettings)
+confirmPlrSettingsCorner.CornerRadius = UDim.new(0, 20)
+
+local confirmMenuSettingsCorner = Instance.new("UICorner", confirmMenuSettings)
+confirmMenuSettingsCorner.CornerRadius = UDim.new(0, 20)
+
+local walkSpeedTextBoxCorner = Instance.new("UICorner", walkSpeedTextBox)
+walkSpeedTextBoxCorner.CornerRadius = UDim.new(0, 8)
+
+local jumpPowerTextBoxCorner = Instance.new("UICorner", jumpPowerTextBox)
+jumpPowerTextBoxCorner.CornerRadius = UDim.new(0, 8)
+
+local walkSpeedTitleCorner = Instance.new("UICorner", walkSpeedTitle)
+walkSpeedTitleCorner.CornerRadius = UDim.new(0, 8)
+
+local jumpPowerTitleCorner = Instance.new("UICorner", jumpPowerTitle)
+jumpPowerTitleCorner.CornerRadius = UDim.new(0, 8)
+
+-- Values
+
+
+
+-- Buttons
+
+confirmPlrSettings.MouseButton1Click:Connect(function()
+	local walkSpeed = walkSpeedTextBox.Text
+	local jumpPower = jumpPowerTextBox.Text
+	local char = plr.Character
+	if char then
+		if tonumber(walkSpeed) ~= nil then
+			char.Humanoid.WalkSpeed = tonumber(walkSpeed)
+		else
+			char.Humanoid.WalkSpeed = 16
+		end
+		if tonumber(jumpPower) ~= nil then
+			char.Humanoid.JumpPower = tonumber(jumpPower)
+		else
+			char.Humanoid.JumpPower = 50
+		end
+	end
+end)
+
+-- \/ COMING SOON \/
+
+-- More Player Settings
+-- Menu Settings
+-- Login System w/ Keys
+-- Auto Canva Size
