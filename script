@@ -42,7 +42,7 @@ local mainFrame = Instance.new("Frame", gui)
 mainFrame.Name = "MainFrame"
 mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 mainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-mainFrame.Size = UDim2.new(0.425, 0, 0.4, 0)
+mainFrame.Size = UDim2.new(0.35, 0, 0.3, 0)
 mainFrame.BackgroundColor3 = Color3.fromRGB(30,33,36)
 mainFrame.Active = true
 mainFrame.Draggable = true
@@ -101,7 +101,7 @@ openButton.ZIndex = 3
 
 local settingsButton = Instance.new("ImageButton", topbarFrame)
 settingsButton.Name = "Settings"
-settingsButton.Position = UDim2.new(0.013, 0, 0.19, 0)
+settingsButton.Position = UDim2.new(0.013, 0, 0.17, 0)
 settingsButton.Size = UDim2.new(0.035, 0, 0.59, 0)
 settingsButton.BackgroundTransparency = 1
 settingsButton.Image = "rbxassetid://10250293875"
@@ -275,7 +275,7 @@ colorCodeTextBox.Size = UDim2.new(0.257, 0, 1, 0)
 colorCodeTextBox.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 colorCodeTextBox.Text = ""
 colorCodeTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-colorCodeTextBox.PlaceholderText = "#000000"
+colorCodeTextBox.PlaceholderText = "#1e2124"
 colorCodeTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 colorCodeTextBox.Font = "FredokaOne"
 colorCodeTextBox.TextScaled = true
@@ -398,7 +398,7 @@ settingsIsOpen.Value = false
 
 local colorCodeValue = Instance.new("StringValue", mainFrame)
 colorCodeValue.Name = "ColorCode"
-colorCodeValue.Value = "1e2124"
+colorCodeValue.Value = "#1e2124"
 
 local hotkeyValue = Instance.new("StringValue", mainFrame)
 hotkeyValue.Name = "Hotkey"
@@ -472,10 +472,10 @@ confirmMenuSettings.MouseButton1Click:Connect(function()
 			hotkeyValue.Value = "m"
 			hotkeyTextBox.Text = ""
 		end
-		if #colorCode == 6 then
+		if #colorCode == 7 then
 			colorCodeValue.Value = tostring(colorCode)
 		else
-			colorCodeValue.Value = "1e2124"
+			colorCodeValue.Value = "#1e2124"
 			colorCodeTextBox.Text = ""
 		end
 	end
@@ -490,10 +490,22 @@ settingsIsOpen.Changed:Connect(function()
 end)
 
 colorCodeValue.Changed:Connect(function()
-	mainFrame.BackgroundColor3 = Color3.fromHex(tostring("#"..colorCodeValue.Value))
-	topbarFrame.BackgroundColor3 = Color3.fromHex(tostring("#"..colorCodeValue.Value))
-	plrSettingsStroke.Color = Color3.fromHex(tostring("#"..colorCodeValue.Value))
-	menuSettingsStroke.Color = Color3.fromHex(tostring("#"..colorCodeValue.Value))
+	mainFrame.BackgroundColor3 = Color3.fromHex(tostring(colorCodeValue.Value))
+	topbarFrame.BackgroundColor3 = Color3.fromHex(tostring(colorCodeValue.Value))
+	plrSettingsStroke.Color = Color3.fromHex(tostring(colorCodeValue.Value))
+	menuSettingsStroke.Color = Color3.fromHex(tostring(colorCodeValue.Value))
+	local plrSettingsFrames = plrSettingsFrame:GetChildren()
+	for i = 1, #plrSettingsFrames do
+		local child = plrSettingsFrames[i]
+		child.TextBox.BackgroundColor3 = Color3.fromHex(tostring(colorCodeValue.Value))
+		child.TextLabel.BackgroundColor3 = Color3.fromHex(tostring(colorCodeValue.Value))
+	end
+	local menuSettingsFrames = menuSettingsFrame:GetChildren()
+	for i = 1, #menuSettingsFrames do
+		local child = menuSettingsFrames[i]
+		child.TextBox.BackgroundColor3 = Color3.fromHex(tostring(colorCodeValue.Value))
+		child.TextLabel.BackgroundColor3 = Color3.fromHex(tostring(colorCodeValue.Value))
+	end
 end)
 
 mouse.KeyDown:Connect(function(pressed)
