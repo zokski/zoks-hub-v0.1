@@ -8,16 +8,16 @@ local mouse = plr:GetMouse()
 local plrGui = plr:FindFirstChild("PlayerGui")
 
 -- Gui
-
+	
 local gui = Instance.new("ScreenGui", plrGui)
 gui.Name = "zok's menu v0.1"
-gui.ResetOnSpawn = false
+gui.ResetOnSpawn = true
 
 local mainFrame = Instance.new("Frame", gui)
 mainFrame.Name = "MainFrame"
 mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 mainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-mainFrame.Size = UDim2.new(0.385, 0, 0.4, 0)
+mainFrame.Size = UDim2.new(0.4, 0, 0.4, 0)
 mainFrame.BackgroundColor3 = Color3.fromRGB(30,33,36)
 mainFrame.Active = true
 mainFrame.Draggable = true
@@ -70,6 +70,14 @@ openButton.BackgroundColor3 = Color3.fromRGB(135, 255, 83)
 openButton.Text = " "
 openButton.ZIndex = 3
 
+local settingsButton = Instance.new("ImageButton", topbarFrame)
+settingsButton.Name = "Settings"
+settingsButton.Position = UDim2.new(0.013, 0, 0.19, 0)
+settingsButton.Size = UDim2.new(0.035, 0, 0.59, 0)
+settingsButton.BackgroundTransparency = 1
+settingsButton.Image = "rbxassetid://10250293875"
+settingsButton.ZIndex = 3
+
 -- Settings Frame
 
 local settingsFrame = Instance.new("Frame", mainFrame)
@@ -79,6 +87,7 @@ settingsFrame.Position = UDim2.new(0.5, 0, 0.55, 0)
 settingsFrame.Size = UDim2.new(0.975, 0, 0.85, 0)
 settingsFrame.BackgroundTransparency = 1
 settingsFrame.ZIndex = 2
+settingsFrame.Visible = false
 
 -- Player Settings
 
@@ -198,6 +207,18 @@ menuSettingsTitle.Font = "FredokaOne"
 menuSettingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 menuSettingsTitle.TextScaled = true
 
+local menuSettingsFrame = Instance.new("ScrollingFrame", menuSettings)
+menuSettingsFrame.Name = "MenuSettingsFrame"
+menuSettingsFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+menuSettingsFrame.Position = UDim2.new(0.5, 0, 0.56, 0)
+menuSettingsFrame.Size = UDim2.new(1, 0, 0.85, 0)
+menuSettingsFrame.BackgroundTransparency = 1
+menuSettingsFrame.BorderSizePixel = 0
+menuSettingsFrame.ZIndex = 4
+menuSettingsFrame.CanvasSize = UDim2.new(0, 0, 1, 0)
+menuSettingsFrame.ScrollBarImageColor3 = Color3.fromRGB(30, 33, 36)
+menuSettingsFrame.ScrollBarThickness = 10
+
 local confirmMenuSettings = Instance.new("TextButton", menuSettings)
 confirmMenuSettings.Name = "Confirm"
 confirmMenuSettings.Position = UDim2.new(0.924, 0, 0.023, 0)
@@ -205,6 +226,35 @@ confirmMenuSettings.Size = UDim2.new(0.055, 0, 0.081, 0)
 confirmMenuSettings.BackgroundColor3 = Color3.fromRGB(135, 255, 83)
 confirmMenuSettings.ZIndex = 4
 confirmMenuSettings.Text = " "
+
+local hotkeyFrame = Instance.new("Frame", menuSettingsFrame)
+hotkeyFrame.Name = "Hotkey"
+hotkeyFrame.Position = UDim2.new(-0.009, 0, 0, 0)
+hotkeyFrame.Size = UDim2.new(1.028, 0, 0.101, 0)
+hotkeyFrame.BackgroundTransparency = 1
+hotkeyFrame.ZIndex = 5
+
+local hotkeyTextBox = Instance.new("TextBox", hotkeyFrame)
+hotkeyTextBox.Position = UDim2.new(0.683, 0, 0, 0)
+hotkeyTextBox.Size = UDim2.new(0.251, 0, 1, 0)
+hotkeyTextBox.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+hotkeyTextBox.Text = ""
+hotkeyTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+hotkeyTextBox.PlaceholderText = "M"
+hotkeyTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+hotkeyTextBox.Font = "FredokaOne"
+hotkeyTextBox.TextScaled = true
+hotkeyTextBox.ZIndex = 6
+
+local hotkeyTitle = Instance.new("TextLabel", hotkeyFrame)
+hotkeyTitle.Position = UDim2.new(0.025, 0, 0, 0)
+hotkeyTitle.Size = UDim2.new(0.639, 0, 1, 0)
+hotkeyTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+hotkeyTitle.Text = "Hotkey:"
+hotkeyTitle.Font = "FredokaOne"
+hotkeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+hotkeyTitle.TextScaled = true
+hotkeyTitle.ZIndex = 6
 
 -- UI Addons
 
@@ -260,11 +310,41 @@ walkSpeedTitleCorner.CornerRadius = UDim.new(0, 8)
 local jumpPowerTitleCorner = Instance.new("UICorner", jumpPowerTitle)
 jumpPowerTitleCorner.CornerRadius = UDim.new(0, 8)
 
+local hotkeyTextBoxCorner = Instance.new("UICorner", hotkeyTextBox)
+hotkeyTextBoxCorner.CornerRadius = UDim.new(0, 8)
+
+local hotkeyTitleCorner = Instance.new("UICorner", hotkeyTitle)
+hotkeyTitleCorner.CornerRadius = UDim.new(0, 8)
+
 -- Values
 
-
-
+local settingsIsOpen = Instance.new("BoolValue", mainFrame)
+settingsIsOpen.Name = "SettingsIsOpen"
+settingsIsOpen.Value = false
+	
 -- Buttons
+
+openButton.MouseButton1Click:Connect(function()
+	mainFrame.BackgroundTransparency = 0
+	if settingsIsOpen.Value == true then
+		settingsFrame.Visible = true
+	end
+end)
+
+minimizeButton.MouseButton1Click:Connect(function()
+	mainFrame.BackgroundTransparency = 1
+	settingsFrame.Visible = false
+end)
+
+closeButton.MouseButton1Click:Connect(function()
+	gui.Enabled = false
+end)
+
+settingsButton.MouseButton1Click:Connect(function()
+	if gui.Enabled and mainFrame.BackgroundTransparency == 0 then
+		settingsIsOpen.Value = not settingsIsOpen.Value 
+	end
+end)
 
 confirmPlrSettings.MouseButton1Click:Connect(function()
 	local walkSpeed = walkSpeedTextBox.Text
@@ -284,9 +364,17 @@ confirmPlrSettings.MouseButton1Click:Connect(function()
 	end
 end)
 
--- \/ COMING SOON \/
+settingsIsOpen.Changed:Connect(function()
+	if settingsIsOpen.Value == true then
+		settingsFrame.Visible = true
+	else
+		settingsFrame.Visible = false
+	end
+end)
 
--- More Player Settings
--- Menu Settings
--- Login System w/ Keys
--- Auto Canva Size
+mouse.KeyDown:Connect(function(pressed)
+	pressed = pressed:lower()
+	if pressed == "m" then
+		gui.Enabled = not gui.Enabled
+	end
+end)
