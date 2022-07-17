@@ -1,29 +1,56 @@
--- Thank you for using zok's menu
--- Made with love from sniper_zok // zok#0001
 
--- Main
+
+
+--   ###########!  ##########!  #!      ###! ##!  ##########!  --
+--            ##! ##!       ##! #!     ##!    #! ##!           --
+--          ##!   #!         #! #!   ##!         #!            --
+--       ###!     #!         #! #####!            #########!   --
+--     ##!        #!         #! #!   ##!                   #!  --
+--   ##!          ##!       ##! #!     ##!                ##!  --
+--   ###########!  ##########!  #!      ###!     ##########!   --
+--                                                             --
+--    ###!     ###!   #########! #########!   #!          #!   --
+--    #! ##!  ##! #! #!          #        #!  #!          #!   --
+--    #!  #!  #!  #! #!          #         #! #!          #!   --
+--    #!   #!#!   #! #########!  #         #! #!          #!   --
+--    #!    #!    #! #!          #         #! ##!        ##!   --
+--    #!          #! #!          #         #!  ###!    ###!    --
+--    #!          #!  #########! #         #!    #######!      --
+
+
+
+-- Current Version: 0.1-Alpha --
+-- Made with love by zok#0001 --
+
+
+
+--// Main //--
 
 local plr = game.Players.LocalPlayer
 local mouse = plr:GetMouse()
 local plrGui = plr:FindFirstChild("PlayerGui")
 
--- Gui
+
+
+--// Menu Gui //--
 	
 local gui = Instance.new("ScreenGui", plrGui)
-gui.Name = "zok's menu v0.1"
+gui.Name = "zok's menu | v0.1"
 gui.ResetOnSpawn = true
 
 local mainFrame = Instance.new("Frame", gui)
 mainFrame.Name = "MainFrame"
 mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 mainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-mainFrame.Size = UDim2.new(0.4, 0, 0.4, 0)
+mainFrame.Size = UDim2.new(0.425, 0, 0.4, 0)
 mainFrame.BackgroundColor3 = Color3.fromRGB(30,33,36)
 mainFrame.Active = true
 mainFrame.Draggable = true
 mainFrame.ZIndex = 1
 
--- Topbar
+
+
+--// Topbar //--
 
 local topbarFrame = Instance.new("Frame", mainFrame)
 topbarFrame.Name = "TopbarFrame"
@@ -44,7 +71,9 @@ titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 titleLabel.TextScaled = true
 titleLabel.ZIndex = 3
 
--- Topbar Buttons
+
+
+--// Topbar Buttons //--
 
 local closeButton = Instance.new("TextButton", topbarFrame)
 closeButton.Name = "Close"
@@ -78,7 +107,9 @@ settingsButton.BackgroundTransparency = 1
 settingsButton.Image = "rbxassetid://10250293875"
 settingsButton.ZIndex = 3
 
--- Settings Frame
+
+
+--// Settings Frame //--
 
 local settingsFrame = Instance.new("Frame", mainFrame)
 settingsFrame.Name = "SettingsFrame"
@@ -89,7 +120,9 @@ settingsFrame.BackgroundTransparency = 1
 settingsFrame.ZIndex = 2
 settingsFrame.Visible = false
 
--- Player Settings
+
+
+--// Player Settings //--
 
 local plrSettings = Instance.new("Frame", settingsFrame)
 plrSettings.Name = "PlayerSettings"
@@ -123,7 +156,7 @@ plrSettingsFrame.ScrollBarThickness = 10
 
 local confirmPlrSettings = Instance.new("TextButton", plrSettings)
 confirmPlrSettings.Name = "Confirm"
-confirmPlrSettings.Position = UDim2.new(0.909, 0, 0.023, 0)
+confirmPlrSettings.Position = UDim2.new(0.911, 0, 0.023, 0)
 confirmPlrSettings.Size = UDim2.new(0.07, 0, 0.08, 0)
 confirmPlrSettings.BackgroundColor3 = Color3.fromRGB(135, 255, 83)
 confirmPlrSettings.ZIndex = 4
@@ -187,7 +220,9 @@ jumpPowerTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 jumpPowerTitle.TextScaled = true
 jumpPowerTitle.ZIndex = 6
 
--- Menu Settings
+
+
+--// Menu Settings //--
 
 local menuSettings = Instance.new("Frame", settingsFrame)
 menuSettings.Name = "MenuSettings"
@@ -221,7 +256,7 @@ menuSettingsFrame.ScrollBarThickness = 10
 
 local confirmMenuSettings = Instance.new("TextButton", menuSettings)
 confirmMenuSettings.Name = "Confirm"
-confirmMenuSettings.Position = UDim2.new(0.924, 0, 0.023, 0)
+confirmMenuSettings.Position = UDim2.new(0.932, 0, 0.023, 0)
 confirmMenuSettings.Size = UDim2.new(0.055, 0, 0.081, 0)
 confirmMenuSettings.BackgroundColor3 = Color3.fromRGB(135, 255, 83)
 confirmMenuSettings.ZIndex = 4
@@ -285,7 +320,9 @@ hotkeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 hotkeyTitle.TextScaled = true
 hotkeyTitle.ZIndex = 6
 
--- UI Addons
+
+
+--// UI Addons //--
 
 local mainFrameCorner = Instance.new("UICorner", mainFrame)
 mainFrameCorner.CornerRadius = UDim.new(0, 12)
@@ -351,7 +388,9 @@ colorCodeTextBoxCorner.CornerRadius = UDim.new(0, 8)
 local colorCodeTitleCorner = Instance.new("UICorner", colorCodeTitle)
 colorCodeTitleCorner.CornerRadius = UDim.new(0, 8)
 
--- Values
+
+
+--// Values //--
 
 local settingsIsOpen = Instance.new("BoolValue", mainFrame)
 settingsIsOpen.Name = "SettingsIsOpen"
@@ -365,18 +404,32 @@ local hotkeyValue = Instance.new("StringValue", mainFrame)
 hotkeyValue.Name = "Hotkey"
 hotkeyValue.Value = "m"
 
--- Buttons
+
+
+--// Buttons //--
 
 openButton.MouseButton1Click:Connect(function()
-	mainFrame.BackgroundTransparency = 0
+	if mainFrame.Transparency == 1 then
+		for i = 1, 0, -0.1 do
+			wait()
+			mainFrame.Transparency = i
+		end
+		mainFrame.Transparency = 0
+	end
 	if settingsIsOpen.Value == true then
 		settingsFrame.Visible = true
 	end
 end)
 
 minimizeButton.MouseButton1Click:Connect(function()
-	mainFrame.BackgroundTransparency = 1
 	settingsFrame.Visible = false
+	if mainFrame.Transparency == 0 then
+		for i = 0, 1, 0.1 do
+			wait()
+			mainFrame.Transparency = i
+		end
+		mainFrame.Transparency = 1
+	end
 end)
 
 closeButton.MouseButton1Click:Connect(function()
@@ -449,3 +502,12 @@ mouse.KeyDown:Connect(function(pressed)
 		gui.Enabled = not gui.Enabled
 	end
 end)
+
+
+
+--// Coming Soon //--
+
+--> More Player Settings
+--> Menu Settings
+--> Login System w/ Keys
+--> Auto Canva Size
