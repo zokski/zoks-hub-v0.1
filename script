@@ -438,10 +438,6 @@ local hotkeyValue = Instance.new("StringValue", mainFrame)
 hotkeyValue.Name = "Hotkey"
 hotkeyValue.Value = "m"
 
-local goToTarget = Instance.new("StringValue", mainFrame)
-goToTarget.Name = "GoToTarget"
-goToTarget.Value = ""
-
 
 
 --// Buttons //--
