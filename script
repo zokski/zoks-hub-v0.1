@@ -227,28 +227,57 @@ confirmMenuSettings.BackgroundColor3 = Color3.fromRGB(135, 255, 83)
 confirmMenuSettings.ZIndex = 4
 confirmMenuSettings.Text = " "
 
+local colorCodeFrame = Instance.new("Frame", menuSettingsFrame)
+colorCodeFrame.Name = "ColorCode"
+colorCodeFrame.Position = UDim2.new(0, 0, 0, 0)
+colorCodeFrame.Size = UDim2.new(1, 0, 0.1, 0)
+colorCodeFrame.BackgroundTransparency = 1
+colorCodeFrame.ZIndex = 5
+
+local colorCodeTextBox = Instance.new("TextBox", colorCodeFrame)
+colorCodeTextBox.Position = UDim2.new(0.693, 0, 0, 0)
+colorCodeTextBox.Size = UDim2.new(0.257, 0, 1, 0)
+colorCodeTextBox.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+colorCodeTextBox.Text = ""
+colorCodeTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+colorCodeTextBox.PlaceholderText = "#000000"
+colorCodeTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+colorCodeTextBox.Font = "FredokaOne"
+colorCodeTextBox.TextScaled = true
+colorCodeTextBox.ZIndex = 6
+
+local colorCodeTitle = Instance.new("TextLabel", colorCodeFrame)
+colorCodeTitle.Position = UDim2.new(0.019, 0, 0, 0)
+colorCodeTitle.Size = UDim2.new(0.655, 0, 1, 0)
+colorCodeTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+colorCodeTitle.Text = "Color Code:"
+colorCodeTitle.Font = "FredokaOne"
+colorCodeTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+colorCodeTitle.TextScaled = true
+colorCodeTitle.ZIndex = 6
+
 local hotkeyFrame = Instance.new("Frame", menuSettingsFrame)
 hotkeyFrame.Name = "Hotkey"
-hotkeyFrame.Position = UDim2.new(-0.009, 0, 0, 0)
-hotkeyFrame.Size = UDim2.new(1.028, 0, 0.101, 0)
+hotkeyFrame.Position = UDim2.new(0, 0, 0.125, 0)
+hotkeyFrame.Size = UDim2.new(1, 0, 0.1, 0)
 hotkeyFrame.BackgroundTransparency = 1
 hotkeyFrame.ZIndex = 5
 
 local hotkeyTextBox = Instance.new("TextBox", hotkeyFrame)
-hotkeyTextBox.Position = UDim2.new(0.683, 0, 0, 0)
-hotkeyTextBox.Size = UDim2.new(0.251, 0, 1, 0)
+hotkeyTextBox.Position = UDim2.new(0.693, 0, 0, 0)
+hotkeyTextBox.Size = UDim2.new(0.257, 0, 1, 0)
 hotkeyTextBox.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 hotkeyTextBox.Text = ""
 hotkeyTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-hotkeyTextBox.PlaceholderText = "M"
+hotkeyTextBox.PlaceholderText = "m"
 hotkeyTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 hotkeyTextBox.Font = "FredokaOne"
 hotkeyTextBox.TextScaled = true
 hotkeyTextBox.ZIndex = 6
 
 local hotkeyTitle = Instance.new("TextLabel", hotkeyFrame)
-hotkeyTitle.Position = UDim2.new(0.025, 0, 0, 0)
-hotkeyTitle.Size = UDim2.new(0.639, 0, 1, 0)
+hotkeyTitle.Position = UDim2.new(0.019, 0, 0, 0)
+hotkeyTitle.Size = UDim2.new(0.655, 0, 1, 0)
 hotkeyTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 hotkeyTitle.Text = "Hotkey:"
 hotkeyTitle.Font = "FredokaOne"
@@ -316,12 +345,26 @@ hotkeyTextBoxCorner.CornerRadius = UDim.new(0, 8)
 local hotkeyTitleCorner = Instance.new("UICorner", hotkeyTitle)
 hotkeyTitleCorner.CornerRadius = UDim.new(0, 8)
 
+local colorCodeTextBoxCorner = Instance.new("UICorner", colorCodeTextBox)
+colorCodeTextBoxCorner.CornerRadius = UDim.new(0, 8)
+
+local colorCodeTitleCorner = Instance.new("UICorner", colorCodeTitle)
+colorCodeTitleCorner.CornerRadius = UDim.new(0, 8)
+
 -- Values
 
 local settingsIsOpen = Instance.new("BoolValue", mainFrame)
 settingsIsOpen.Name = "SettingsIsOpen"
 settingsIsOpen.Value = false
-	
+
+local colorCodeValue = Instance.new("StringValue", mainFrame)
+colorCodeValue.Name = "ColorCode"
+colorCodeValue.Value = "1e2124"
+
+local hotkeyValue = Instance.new("StringValue", mainFrame)
+hotkeyValue.Name = "Hotkey"
+hotkeyValue.Value = "m"
+
 -- Buttons
 
 openButton.MouseButton1Click:Connect(function()
@@ -355,11 +398,32 @@ confirmPlrSettings.MouseButton1Click:Connect(function()
 			char.Humanoid.WalkSpeed = tonumber(walkSpeed)
 		else
 			char.Humanoid.WalkSpeed = 16
+			walkSpeedTextBox.Text = ""
 		end
 		if tonumber(jumpPower) ~= nil then
 			char.Humanoid.JumpPower = tonumber(jumpPower)
 		else
 			char.Humanoid.JumpPower = 50
+			jumpPowerTextBox.Text = ""
+		end
+	end
+end)
+
+confirmMenuSettings.MouseButton1Click:Connect(function()
+	local colorCode = colorCodeTextBox.Text
+	local hotkey = hotkeyTextBox.Text
+	if gui then
+		if #hotkey == 1 then
+			hotkeyValue.Value = tostring(hotkey)
+		else
+			hotkeyValue.Value = "m"
+			hotkeyTextBox.Text = ""
+		end
+		if #colorCode == 6 then
+			colorCodeValue.Value = tostring(colorCode)
+		else
+			colorCodeValue.Value = "1e2124"
+			colorCodeTextBox.Text = ""
 		end
 	end
 end)
@@ -372,9 +436,16 @@ settingsIsOpen.Changed:Connect(function()
 	end
 end)
 
+colorCodeValue.Changed:Connect(function()
+	mainFrame.BackgroundColor3 = Color3.fromHex(tostring("#"..colorCodeValue.Value))
+	topbarFrame.BackgroundColor3 = Color3.fromHex(tostring("#"..colorCodeValue.Value))
+	plrSettingsStroke.Color = Color3.fromHex(tostring("#"..colorCodeValue.Value))
+	menuSettingsStroke.Color = Color3.fromHex(tostring("#"..colorCodeValue.Value))
+end)
+
 mouse.KeyDown:Connect(function(pressed)
 	pressed = pressed:lower()
-	if pressed == "m" then
+	if pressed == hotkeyValue.Value then
 		gui.Enabled = not gui.Enabled
 	end
 end)
