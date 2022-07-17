@@ -169,13 +169,6 @@ walkSpeedFrame.Size = UDim2.new(1, 0, 0.1, 0)
 walkSpeedFrame.BackgroundTransparency = 1
 walkSpeedFrame.ZIndex = 5
 
-local jumpPowerFrame = Instance.new("Frame", plrSettingsFrame)
-jumpPowerFrame.Name = "JumpPower"
-jumpPowerFrame.Position = UDim2.new(0, 0, 0.125, 0)
-jumpPowerFrame.Size = UDim2.new(1, 0, 0.1, 0)
-jumpPowerFrame.BackgroundTransparency = 1
-jumpPowerFrame.ZIndex = 5
-
 local walkSpeedTextBox = Instance.new("TextBox", walkSpeedFrame)
 walkSpeedTextBox.Position = UDim2.new(0.6, 0, 0, 0)
 walkSpeedTextBox.Size = UDim2.new(0.335, 0, 1, 0)
@@ -187,6 +180,23 @@ walkSpeedTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 walkSpeedTextBox.Font = "FredokaOne"
 walkSpeedTextBox.TextScaled = true
 walkSpeedTextBox.ZIndex = 6
+
+local walkSpeedTitle = Instance.new("TextLabel", walkSpeedFrame)
+walkSpeedTitle.Position = UDim2.new(0.025, 0, 0, 0)
+walkSpeedTitle.Size = UDim2.new(0.55, 0, 1, 0)
+walkSpeedTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+walkSpeedTitle.Text = "WalkSpeed:"
+walkSpeedTitle.Font = "FredokaOne"
+walkSpeedTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+walkSpeedTitle.TextScaled = true
+walkSpeedTitle.ZIndex = 6
+
+local jumpPowerFrame = Instance.new("Frame", plrSettingsFrame)
+jumpPowerFrame.Name = "JumpPower"
+jumpPowerFrame.Position = UDim2.new(0, 0, 0.125, 0)
+jumpPowerFrame.Size = UDim2.new(1, 0, 0.1, 0)
+jumpPowerFrame.BackgroundTransparency = 1
+jumpPowerFrame.ZIndex = 5
 
 local jumpPowerTextBox = Instance.new("TextBox", jumpPowerFrame)
 jumpPowerTextBox.Position = UDim2.new(0.6, 0, 0, 0)
@@ -200,16 +210,6 @@ jumpPowerTextBox.Font = "FredokaOne"
 jumpPowerTextBox.TextScaled = true
 jumpPowerTextBox.ZIndex = 6
 
-local walkSpeedTitle = Instance.new("TextLabel", walkSpeedFrame)
-walkSpeedTitle.Position = UDim2.new(0.025, 0, 0, 0)
-walkSpeedTitle.Size = UDim2.new(0.55, 0, 1, 0)
-walkSpeedTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
-walkSpeedTitle.Text = "WalkSpeed:"
-walkSpeedTitle.Font = "FredokaOne"
-walkSpeedTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-walkSpeedTitle.TextScaled = true
-walkSpeedTitle.ZIndex = 6
-
 local jumpPowerTitle = Instance.new("TextLabel", jumpPowerFrame)
 jumpPowerTitle.Position = UDim2.new(0.025, 0, 0, 0)
 jumpPowerTitle.Size = UDim2.new(0.55, 0, 1, 0)
@@ -219,6 +219,35 @@ jumpPowerTitle.Font = "FredokaOne"
 jumpPowerTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 jumpPowerTitle.TextScaled = true
 jumpPowerTitle.ZIndex = 6
+
+local goToFrame = Instance.new("Frame", plrSettingsFrame)
+goToFrame.Name = "GoTo"
+goToFrame.Position = UDim2.new(0, 0, 0.25, 0)
+goToFrame.Size = UDim2.new(1, 0, 0.1, 0)
+goToFrame.BackgroundTransparency = 1
+goToFrame.ZIndex = 5
+
+local goToTextBox = Instance.new("TextBox", goToFrame)
+goToTextBox.Position = UDim2.new(0.6, 0, 0, 0)
+goToTextBox.Size = UDim2.new(0.335, 0, 1, 0)
+goToTextBox.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+goToTextBox.Text = ""
+goToTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+goToTextBox.PlaceholderText = "Player"
+goToTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+goToTextBox.Font = "FredokaOne"
+goToTextBox.TextScaled = true
+goToTextBox.ZIndex = 6
+
+local goToTitle = Instance.new("TextLabel", goToFrame)
+goToTitle.Position = UDim2.new(0.025, 0, 0, 0)
+goToTitle.Size = UDim2.new(0.55, 0, 1, 0)
+goToTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+goToTitle.Text = "Go To:"
+goToTitle.Font = "FredokaOne"
+goToTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+goToTitle.TextScaled = true
+goToTitle.ZIndex = 6
 
 
 
@@ -388,6 +417,11 @@ colorCodeTextBoxCorner.CornerRadius = UDim.new(0, 8)
 local colorCodeTitleCorner = Instance.new("UICorner", colorCodeTitle)
 colorCodeTitleCorner.CornerRadius = UDim.new(0, 8)
 
+local goToTextBoxCorner = Instance.new("UICorner", goToTextBox)
+goToTextBoxCorner.CornerRadius = UDim.new(0, 8)
+
+local goToTitleCorner = Instance.new("UICorner", goToTitle)
+goToTitleCorner.CornerRadius = UDim.new(0, 8)
 
 
 --// Values //--
@@ -403,6 +437,10 @@ colorCodeValue.Value = "#1e2124"
 local hotkeyValue = Instance.new("StringValue", mainFrame)
 hotkeyValue.Name = "Hotkey"
 hotkeyValue.Value = "m"
+
+local goToTarget = Instance.new("StringValue", mainFrame)
+goToTarget.Name = "GoToTarget"
+goToTarget.Value = ""
 
 
 
@@ -443,21 +481,30 @@ settingsButton.MouseButton1Click:Connect(function()
 end)
 
 confirmPlrSettings.MouseButton1Click:Connect(function()
-	local walkSpeed = walkSpeedTextBox.Text
-	local jumpPower = jumpPowerTextBox.Text
+	local walkSpeed = tonumber(walkSpeedTextBox.Text)
+	local jumpPower = tonumber(jumpPowerTextBox.Text)
+	local goTo = tostring(goToTextBox.Text)
 	local char = plr.Character
 	if char then
-		if tonumber(walkSpeed) ~= nil then
-			char.Humanoid.WalkSpeed = tonumber(walkSpeed)
+		if walkSpeed ~= nil then
+			char.Humanoid.WalkSpeed = walkSpeed
 		else
 			char.Humanoid.WalkSpeed = 16
 			walkSpeedTextBox.Text = ""
 		end
-		if tonumber(jumpPower) ~= nil then
-			char.Humanoid.JumpPower = tonumber(jumpPower)
+		if jumpPower ~= nil then
+			char.Humanoid.JumpPower = jumpPower
 		else
 			char.Humanoid.JumpPower = 50
 			jumpPowerTextBox.Text = ""
+		end
+		if goTo ~= nil and goTo ~= plr.Name then
+			if game.Players:FindFirstChild(goTo) then
+				local target = game.Players:FindFirstChild(goTo)
+				plr.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame + Vector3.new(0, 0, 3)
+			end
+		else
+			goToTextBox.Text = ""
 		end
 	end
 end)
