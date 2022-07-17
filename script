@@ -33,7 +33,7 @@ local plrGui = plr:FindFirstChild("PlayerGui")
 
 
 --// Menu Gui //--
-	
+
 local gui = Instance.new("ScreenGui", plrGui)
 gui.Name = "zok's menu | v0.1"
 gui.ResetOnSpawn = true
@@ -497,7 +497,7 @@ confirmPlrSettings.MouseButton1Click:Connect(function()
 		if goTo ~= nil and goTo ~= plr.Name then
 			if game.Players:FindFirstChild(goTo) then
 				local target = game.Players:FindFirstChild(goTo)
-				plr.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame + Vector3.new(0, 0, 3)
+				plr.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame + Vector3.new(0, 5, 3)
 			end
 		else
 			goToTextBox.Text = ""
