@@ -24,7 +24,7 @@
 
 
 
---// Main //--
+--// Main Properties \\--
 
 local plr = game.Players.LocalPlayer
 local mouse = plr:GetMouse()
@@ -32,7 +32,7 @@ local plrGui = plr:FindFirstChild("PlayerGui")
 
 
 
---// Menu Gui //--
+--// Main Gui \\--
 
 local gui = Instance.new("ScreenGui", plrGui)
 gui.Name = "zok's menu | v0.1"
@@ -50,7 +50,16 @@ mainFrame.ZIndex = 1
 
 
 
---// Topbar //--
+--// Main Frames \\--
+
+local loginFrame = Instance.new("Frame", mainFrame)
+loginFrame.Name = "LoginFrame"
+loginFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+loginFrame.Position = UDim2.new(0.5, 0, 0.55, 0)
+loginFrame.Size = UDim2.new(0.975, 0, 0.85, 0)
+loginFrame.BackgroundTransparency = 1
+loginFrame.ZIndex = 2
+loginFrame.Visible = true
 
 local topbarFrame = Instance.new("Frame", mainFrame)
 topbarFrame.Name = "TopbarFrame"
@@ -60,20 +69,38 @@ topbarFrame.Size = UDim2.new(1, 0, 0.13, 0)
 topbarFrame.BackgroundColor3 = Color3.fromRGB(30,33,36)
 topbarFrame.ZIndex = 2
 
+local settingsFrame = Instance.new("Frame", mainFrame)
+settingsFrame.Name = "SettingsFrame"
+settingsFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+settingsFrame.Position = UDim2.new(0.5, 0, 0.55, 0)
+settingsFrame.Size = UDim2.new(0.975, 0, 0.85, 0)
+settingsFrame.BackgroundTransparency = 1
+settingsFrame.ZIndex = 2
+settingsFrame.Visible = false
+
+local accountFrame = Instance.new("Frame", mainFrame)
+accountFrame.Name = "AccountFrame"
+accountFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+accountFrame.Position = UDim2.new(0.5, 0, 0.55, 0)
+accountFrame.Size = UDim2.new(0.975, 0, 0.85, 0)
+accountFrame.BackgroundTransparency = 1
+accountFrame.ZIndex = 2
+accountFrame.Visible = false
+
+
+
+--// Topbar Buttons \\--
+
 local titleLabel = Instance.new("TextLabel", topbarFrame)
 titleLabel.Name = "Title"
 titleLabel.BackgroundTransparency = 1
-titleLabel.Position = UDim2.new(0, 0, 0.165, 0)
+titleLabel.Position = UDim2.new(0, 0, 0.125, 0)
 titleLabel.Size = UDim2.new(1, 0, 0.7, 0)
 titleLabel.Text = gui.Name
 titleLabel.Font = "FredokaOne"
 titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-titleLabel.TextScaled = true
+titleLabel.TextSize = 18
 titleLabel.ZIndex = 3
-
-
-
---// Topbar Buttons //--
 
 local closeButton = Instance.new("TextButton", topbarFrame)
 closeButton.Name = "Close"
@@ -107,22 +134,80 @@ settingsButton.BackgroundTransparency = 1
 settingsButton.Image = "rbxassetid://10250293875"
 settingsButton.ZIndex = 3
 
-
-
---// Settings Frame //--
-
-local settingsFrame = Instance.new("Frame", mainFrame)
-settingsFrame.Name = "SettingsFrame"
-settingsFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-settingsFrame.Position = UDim2.new(0.5, 0, 0.55, 0)
-settingsFrame.Size = UDim2.new(0.975, 0, 0.85, 0)
-settingsFrame.BackgroundTransparency = 1
-settingsFrame.ZIndex = 2
-settingsFrame.Visible = false
+local accountButton = Instance.new("ImageButton", topbarFrame)
+accountButton.Name = "Account"
+accountButton.Position = UDim2.new(0.06, 0, 0.185, 0)
+accountButton.Size = UDim2.new(0.032, 0, 0.6, 0)
+accountButton.BackgroundTransparency = 1
+accountButton.Image = "rbxassetid://10273095162"
+accountButton.ZIndex = 3
 
 
 
---// Player Settings //--
+--// Login Settings \\--
+
+local loginSettings = Instance.new("Frame", loginFrame)
+loginSettings.Name = "LoginSettings"
+loginSettings.Position = UDim2.new(0, 0, 0, 0)
+loginSettings.Size = UDim2.new(1, 0, 1, 0)
+loginSettings.BackgroundColor3 = Color3.fromRGB(46, 49, 54)
+loginSettings.ZIndex = 3
+
+local loginSettingsTitle = Instance.new("TextLabel", loginSettings)
+loginSettingsTitle.Name = "Title"
+loginSettingsTitle.Position = UDim2.new(0, 0, 0.025, 0)
+loginSettingsTitle.Size = UDim2.new(1, 0, 0.085, 0)
+loginSettingsTitle.BackgroundTransparency = 1
+loginSettingsTitle.ZIndex = 4
+loginSettingsTitle.Text = "Welcome "..plr.DisplayName..", Please Login."
+loginSettingsTitle.Font = "FredokaOne"
+loginSettingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+loginSettingsTitle.TextSize = 16
+
+local loginButton = Instance.new("TextButton", loginSettings)
+loginButton.Name = "LoginButton"
+loginButton.AnchorPoint = Vector2.new(0.5, 0.5)
+loginButton.Position = UDim2.new(0.5, 0, 0.875, 0)
+loginButton.Size = UDim2.new(0.2, 0, 0.175, 0)
+loginButton.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+loginButton.Text = "LOGIN"
+loginButton.Font = "FredokaOne"
+loginButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+loginButton.TextSize = 16
+loginButton.ZIndex = 4
+
+local keyFrame = Instance.new("Frame", loginSettings)
+keyFrame.Name = "KeyFrame"
+keyFrame.Position = UDim2.new(0, 0, 0.175, 0)
+keyFrame.Size = UDim2.new(1, 0, 0.15, 0)
+keyFrame.BackgroundTransparency = 1
+keyFrame.ZIndex = 4
+
+local keyFrameTextBox = Instance.new("TextBox", keyFrame)
+keyFrameTextBox.Position = UDim2.new(0.406, 0, 0, 0)
+keyFrameTextBox.Size = UDim2.new(0.585, 0, 1, 0)
+keyFrameTextBox.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+keyFrameTextBox.Text = ""
+keyFrameTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+keyFrameTextBox.PlaceholderText = "Key"
+keyFrameTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+keyFrameTextBox.Font = "FredokaOne"
+keyFrameTextBox.TextSize = 16
+keyFrameTextBox.ZIndex = 5
+
+local keyFrameTitle = Instance.new("TextLabel", keyFrame)
+keyFrameTitle.Position = UDim2.new(0.008, 0, 0, 0)
+keyFrameTitle.Size = UDim2.new(0.386, 0, 1, 0)
+keyFrameTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+keyFrameTitle.Text = "Enter Key:"
+keyFrameTitle.Font = "FredokaOne"
+keyFrameTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+keyFrameTitle.TextSize = 16
+keyFrameTitle.ZIndex = 5
+
+
+
+--// Player Settings \\--
 
 local plrSettings = Instance.new("Frame", settingsFrame)
 plrSettings.Name = "PlayerSettings"
@@ -140,7 +225,7 @@ plrSettingsTitle.ZIndex = 4
 plrSettingsTitle.Text = "Player Settings"
 plrSettingsTitle.Font = "FredokaOne"
 plrSettingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-plrSettingsTitle.TextScaled = true
+plrSettingsTitle.TextSize = 16
 
 local plrSettingsFrame = Instance.new("ScrollingFrame", plrSettings)
 plrSettingsFrame.Name = "PlayerSettingsFrame"
@@ -148,9 +233,8 @@ plrSettingsFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 plrSettingsFrame.Position = UDim2.new(0.5, 0, 0.56, 0)
 plrSettingsFrame.Size = UDim2.new(1, 0, 0.85, 0)
 plrSettingsFrame.BackgroundTransparency = 1
-plrSettingsFrame.BorderSizePixel = 0
 plrSettingsFrame.ZIndex = 4
-plrSettingsFrame.CanvasSize = UDim2.new(0, 0, 1, 0)
+plrSettingsFrame.CanvasSize = UDim2.new(0, 0, 0, 100)
 plrSettingsFrame.ScrollBarImageColor3 = Color3.fromRGB(30, 33, 36)
 plrSettingsFrame.ScrollBarThickness = 10
 
@@ -178,7 +262,7 @@ walkSpeedTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 walkSpeedTextBox.PlaceholderText = "16"
 walkSpeedTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 walkSpeedTextBox.Font = "FredokaOne"
-walkSpeedTextBox.TextScaled = true
+walkSpeedTextBox.TextSize = 16
 walkSpeedTextBox.ZIndex = 6
 
 local walkSpeedTitle = Instance.new("TextLabel", walkSpeedFrame)
@@ -188,7 +272,7 @@ walkSpeedTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 walkSpeedTitle.Text = "WalkSpeed:"
 walkSpeedTitle.Font = "FredokaOne"
 walkSpeedTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-walkSpeedTitle.TextScaled = true
+walkSpeedTitle.TextSize = 16
 walkSpeedTitle.ZIndex = 6
 
 local jumpPowerFrame = Instance.new("Frame", plrSettingsFrame)
@@ -207,7 +291,7 @@ jumpPowerTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 jumpPowerTextBox.PlaceholderText = "50"
 jumpPowerTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 jumpPowerTextBox.Font = "FredokaOne"
-jumpPowerTextBox.TextScaled = true
+jumpPowerTextBox.TextSize = 16
 jumpPowerTextBox.ZIndex = 6
 
 local jumpPowerTitle = Instance.new("TextLabel", jumpPowerFrame)
@@ -217,7 +301,7 @@ jumpPowerTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 jumpPowerTitle.Text = "JumpPower:"
 jumpPowerTitle.Font = "FredokaOne"
 jumpPowerTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-jumpPowerTitle.TextScaled = true
+jumpPowerTitle.TextSize = 16
 jumpPowerTitle.ZIndex = 6
 
 local goToFrame = Instance.new("Frame", plrSettingsFrame)
@@ -236,7 +320,7 @@ goToTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 goToTextBox.PlaceholderText = "Player"
 goToTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 goToTextBox.Font = "FredokaOne"
-goToTextBox.TextScaled = true
+goToTextBox.TextSize = 16
 goToTextBox.ZIndex = 6
 
 local goToTitle = Instance.new("TextLabel", goToFrame)
@@ -246,12 +330,12 @@ goToTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 goToTitle.Text = "Go To:"
 goToTitle.Font = "FredokaOne"
 goToTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-goToTitle.TextScaled = true
+goToTitle.TextSize = 16
 goToTitle.ZIndex = 6
 
 
 
---// Menu Settings //--
+--// Menu Settings \\--
 
 local menuSettings = Instance.new("Frame", settingsFrame)
 menuSettings.Name = "MenuSettings"
@@ -269,7 +353,7 @@ menuSettingsTitle.ZIndex = 4
 menuSettingsTitle.Text = "Menu Settings"
 menuSettingsTitle.Font = "FredokaOne"
 menuSettingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-menuSettingsTitle.TextScaled = true
+menuSettingsTitle.TextSize = 16
 
 local menuSettingsFrame = Instance.new("ScrollingFrame", menuSettings)
 menuSettingsFrame.Name = "MenuSettingsFrame"
@@ -277,9 +361,8 @@ menuSettingsFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 menuSettingsFrame.Position = UDim2.new(0.5, 0, 0.56, 0)
 menuSettingsFrame.Size = UDim2.new(1, 0, 0.85, 0)
 menuSettingsFrame.BackgroundTransparency = 1
-menuSettingsFrame.BorderSizePixel = 0
 menuSettingsFrame.ZIndex = 4
-menuSettingsFrame.CanvasSize = UDim2.new(0, 0, 1, 0)
+menuSettingsFrame.CanvasSize = UDim2.new(0, 0, 0, 100)
 menuSettingsFrame.ScrollBarImageColor3 = Color3.fromRGB(30, 33, 36)
 menuSettingsFrame.ScrollBarThickness = 10
 
@@ -307,7 +390,7 @@ colorCodeTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 colorCodeTextBox.PlaceholderText = "#1e2124"
 colorCodeTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 colorCodeTextBox.Font = "FredokaOne"
-colorCodeTextBox.TextScaled = true
+colorCodeTextBox.TextSize = 16
 colorCodeTextBox.ZIndex = 6
 
 local colorCodeTitle = Instance.new("TextLabel", colorCodeFrame)
@@ -317,7 +400,7 @@ colorCodeTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 colorCodeTitle.Text = "Color Code:"
 colorCodeTitle.Font = "FredokaOne"
 colorCodeTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-colorCodeTitle.TextScaled = true
+colorCodeTitle.TextSize = 16
 colorCodeTitle.ZIndex = 6
 
 local hotkeyFrame = Instance.new("Frame", menuSettingsFrame)
@@ -336,7 +419,7 @@ hotkeyTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 hotkeyTextBox.PlaceholderText = "m"
 hotkeyTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 hotkeyTextBox.Font = "FredokaOne"
-hotkeyTextBox.TextScaled = true
+hotkeyTextBox.TextSize = 16
 hotkeyTextBox.ZIndex = 6
 
 local hotkeyTitle = Instance.new("TextLabel", hotkeyFrame)
@@ -346,12 +429,12 @@ hotkeyTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 hotkeyTitle.Text = "Hotkey:"
 hotkeyTitle.Font = "FredokaOne"
 hotkeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-hotkeyTitle.TextScaled = true
+hotkeyTitle.TextSize = 16
 hotkeyTitle.ZIndex = 6
 
 
 
---// UI Addons //--
+--// UI Addons \\--
 
 local mainFrameCorner = Instance.new("UICorner", mainFrame)
 mainFrameCorner.CornerRadius = UDim.new(0, 12)
@@ -370,6 +453,9 @@ openButtonCorner.CornerRadius = UDim.new(0, 20)
 
 local settingsFrameCorner = Instance.new("UICorner", settingsFrame)
 settingsFrameCorner.CornerRadius = UDim.new(0, 10)
+
+local loginSettingsCorner = Instance.new("UICorner", loginSettings)
+loginSettingsCorner.CornerRadius = UDim.new(0, 10)
 
 local plrSettingsCorner = Instance.new("UICorner", plrSettings)
 plrSettingsCorner.CornerRadius = UDim.new(0, 10)
@@ -423,12 +509,30 @@ goToTextBoxCorner.CornerRadius = UDim.new(0, 8)
 local goToTitleCorner = Instance.new("UICorner", goToTitle)
 goToTitleCorner.CornerRadius = UDim.new(0, 8)
 
+local loginButtonCorner = Instance.new("UICorner", loginButton)
+loginButtonCorner.CornerRadius = UDim.new(0, 8)
 
---// Values //--
+local keyFrameTextBoxCorner = Instance.new("UICorner", keyFrameTextBox)
+keyFrameTextBoxCorner.CornerRadius = UDim.new(0, 8)
+
+local keyFrameTitleCorner = Instance.new("UICorner", keyFrameTitle)
+keyFrameTitleCorner.CornerRadius = UDim.new(0, 8)
+
+
+
+--// Values \\--
 
 local settingsIsOpen = Instance.new("BoolValue", mainFrame)
 settingsIsOpen.Name = "SettingsIsOpen"
 settingsIsOpen.Value = false
+
+local accountIsOpen = Instance.new("BoolValue", mainFrame)
+accountIsOpen.Name = "AccountIsOpen"
+accountIsOpen.Value = false
+
+local loginIsOpen = Instance.new("BoolValue", mainFrame)
+loginIsOpen.Name = "LoginIsOpen"
+loginIsOpen.Value = true
 
 local colorCodeValue = Instance.new("StringValue", mainFrame)
 colorCodeValue.Name = "ColorCode"
@@ -440,7 +544,7 @@ hotkeyValue.Value = "m"
 
 
 
---// Buttons //--
+--// Button Clicks \\--
 
 openButton.MouseButton1Click:Connect(function()
 	if mainFrame.Transparency == 1 then
@@ -449,15 +553,19 @@ openButton.MouseButton1Click:Connect(function()
 			mainFrame.Transparency = i
 		end
 		mainFrame.Transparency = 0
-	end
-	if settingsIsOpen.Value == true then
-		settingsFrame.Visible = true
+		if settingsIsOpen.Value == true then
+			settingsFrame.Visible = true
+		end
+		if loginIsOpen.Value == true then
+			loginFrame.Visible = true
+		end
 	end
 end)
 
 minimizeButton.MouseButton1Click:Connect(function()
-	settingsFrame.Visible = false
 	if mainFrame.Transparency == 0 then
+		settingsFrame.Visible = false
+		loginFrame.Visible = false
 		for i = 0, 1, 0.1 do
 			wait()
 			mainFrame.Transparency = i
@@ -471,7 +579,7 @@ closeButton.MouseButton1Click:Connect(function()
 end)
 
 settingsButton.MouseButton1Click:Connect(function()
-	if gui.Enabled and mainFrame.BackgroundTransparency == 0 then
+	if gui.Enabled and mainFrame.BackgroundTransparency == 0 and loginIsOpen.Value == false then
 		settingsIsOpen.Value = not settingsIsOpen.Value 
 	end
 end)
@@ -524,6 +632,19 @@ confirmMenuSettings.MouseButton1Click:Connect(function()
 	end
 end)
 
+loginButton.MouseButton1Click:Connect(function()
+	if keyFrameTextBox.Text == "zok123" then
+		loginIsOpen.Value = false
+		loginFrame.Visible = false
+	else
+		keyFrameTextBox.Text = ""
+	end
+end)
+
+
+
+--// Value Changes \\--
+
 settingsIsOpen.Changed:Connect(function()
 	if settingsIsOpen.Value == true then
 		settingsFrame.Visible = true
@@ -551,6 +672,10 @@ colorCodeValue.Changed:Connect(function()
 	end
 end)
 
+
+
+--// Keys Pressed \\--
+
 mouse.KeyDown:Connect(function(pressed)
 	pressed = pressed:lower()
 	if pressed == hotkeyValue.Value then
@@ -560,9 +685,9 @@ end)
 
 
 
---// Coming Soon //--
+--// Coming Soon \\--
 
---> More Player Settings
---> Menu Settings
---> Login System w/ Keys
+--> More Settings
+--> Login System
+--> Login Keys
 --> Auto Canva Size
