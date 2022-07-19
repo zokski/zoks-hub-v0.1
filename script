@@ -32,6 +32,17 @@ local plrGui = plr:FindFirstChild("PlayerGui")
 
 
 
+--// Player Keys \\--
+
+local keys = {
+
+	["sniper_zok"] = "key-w3r0pl34NOasTgPq4WEBMuuUA7Xwgy1xusa9WcOXUtoW0SbILFofQnzicd09";
+	["nc0i"] = "key-4LrQm5REu6lMpkrQL7OIyACvcJg6HAGtAxZKJIe9xvTcHx6RcVqIDoevT5WV";
+
+}
+
+
+
 --// Main Gui \\--
 
 local gui = Instance.new("ScreenGui", plrGui)
@@ -158,11 +169,23 @@ loginSettingsTitle.Name = "Title"
 loginSettingsTitle.Position = UDim2.new(0, 0, 0.025, 0)
 loginSettingsTitle.Size = UDim2.new(1, 0, 0.085, 0)
 loginSettingsTitle.BackgroundTransparency = 1
-loginSettingsTitle.ZIndex = 4
-loginSettingsTitle.Text = "Welcome "..plr.DisplayName..", Please Login."
+loginSettingsTitle.Text = "Welcome "..plr.DisplayName.."!"
 loginSettingsTitle.Font = "FredokaOne"
 loginSettingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 loginSettingsTitle.TextSize = 16
+loginSettingsTitle.ZIndex = 4
+
+local loginSettingsOutput = Instance.new("TextLabel", loginSettings)
+loginSettingsOutput.Name = "Output"
+loginSettingsOutput.Position = UDim2.new(0.05, 0, 0.175, 0)
+loginSettingsOutput.Size = UDim2.new(0.9, 0, 0.325, 0)
+loginSettingsOutput.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+loginSettingsOutput.Text = "You need a key to gain access to the menu. You can purchase one in the community server."
+loginSettingsOutput.Font = "FredokaOne"
+loginSettingsOutput.TextColor3 = Color3.fromRGB(255, 255, 255)
+loginSettingsOutput.TextSize = 16
+loginSettingsOutput.TextWrapped = true
+loginSettingsOutput.ZIndex = 4
 
 local loginButton = Instance.new("TextButton", loginSettings)
 loginButton.Name = "LoginButton"
@@ -178,26 +201,33 @@ loginButton.ZIndex = 4
 
 local keyFrame = Instance.new("Frame", loginSettings)
 keyFrame.Name = "KeyFrame"
-keyFrame.Position = UDim2.new(0, 0, 0.175, 0)
+keyFrame.Position = UDim2.new(0, 0, 0.575, 0)
 keyFrame.Size = UDim2.new(1, 0, 0.15, 0)
 keyFrame.BackgroundTransparency = 1
 keyFrame.ZIndex = 4
 
 local keyFrameTextBox = Instance.new("TextBox", keyFrame)
-keyFrameTextBox.Position = UDim2.new(0.406, 0, 0, 0)
-keyFrameTextBox.Size = UDim2.new(0.585, 0, 1, 0)
-keyFrameTextBox.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+keyFrameTextBox.Position = UDim2.new(0.253, 0, 0.19, 0)
+keyFrameTextBox.Size = UDim2.new(0.697, 0, 0.603, 0)
+keyFrameTextBox.BackgroundTransparency = 1
 keyFrameTextBox.Text = ""
 keyFrameTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 keyFrameTextBox.PlaceholderText = "Key"
 keyFrameTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 keyFrameTextBox.Font = "FredokaOne"
-keyFrameTextBox.TextSize = 16
-keyFrameTextBox.ZIndex = 5
+keyFrameTextBox.TextScaled = true
+keyFrameTextBox.ZIndex = 6
+
+local keyFrameTextBoxBack = Instance.new("TextLabel", keyFrame)
+keyFrameTextBoxBack.Position = UDim2.new(0.253, 0, 0, 0)
+keyFrameTextBoxBack.Size = UDim2.new(0.697, 0, 1, 0)
+keyFrameTextBoxBack.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+keyFrameTextBoxBack.Text = ""
+keyFrameTextBoxBack.ZIndex = 5
 
 local keyFrameTitle = Instance.new("TextLabel", keyFrame)
-keyFrameTitle.Position = UDim2.new(0.008, 0, 0, 0)
-keyFrameTitle.Size = UDim2.new(0.386, 0, 1, 0)
+keyFrameTitle.Position = UDim2.new(0.049, 0, 0, 0)
+keyFrameTitle.Size = UDim2.new(0.193, 0, 1, 0)
 keyFrameTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 keyFrameTitle.Text = "Enter Key:"
 keyFrameTitle.Font = "FredokaOne"
@@ -512,11 +542,14 @@ goToTitleCorner.CornerRadius = UDim.new(0, 8)
 local loginButtonCorner = Instance.new("UICorner", loginButton)
 loginButtonCorner.CornerRadius = UDim.new(0, 8)
 
-local keyFrameTextBoxCorner = Instance.new("UICorner", keyFrameTextBox)
-keyFrameTextBoxCorner.CornerRadius = UDim.new(0, 8)
+local keyFrameTextBoxBackCorner = Instance.new("UICorner", keyFrameTextBoxBack)
+keyFrameTextBoxBackCorner.CornerRadius = UDim.new(0, 8)
 
 local keyFrameTitleCorner = Instance.new("UICorner", keyFrameTitle)
 keyFrameTitleCorner.CornerRadius = UDim.new(0, 8)
+
+local loginSettingsOutputCorner = Instance.new("UICorner", loginSettingsOutput)
+loginSettingsOutputCorner.CornerRadius = UDim.new(0, 10)
 
 
 
@@ -633,11 +666,16 @@ confirmMenuSettings.MouseButton1Click:Connect(function()
 end)
 
 loginButton.MouseButton1Click:Connect(function()
-	if keyFrameTextBox.Text == "zok123" then
-		loginIsOpen.Value = false
-		loginFrame.Visible = false
-	else
-		keyFrameTextBox.Text = ""
+	for i, v in pairs(keys) do
+		if plr.Name == i then
+			local key = v
+			if keyFrameTextBox.Text == key then
+				loginIsOpen.Value = false
+				loginFrame.Visible = false
+			else
+				keyFrameTextBox.Text = ""
+			end
+		end
 	end
 end)
 
