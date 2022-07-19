@@ -36,8 +36,8 @@ local plrGui = plr:FindFirstChild("PlayerGui")
 
 local keys = {
 
-	["sniper_zok"] = "key-w3r0pl34NOasTgPq4WEBMuuUA7Xwgy1xusa9WcOXUtoW0SbILFofQnzicd09";
-	["nc0i"] = "key-4LrQm5REu6lMpkrQL7OIyACvcJg6HAGtAxZKJIe9xvTcHx6RcVqIDoevT5WV";
+	["sniper_zok"] = "l-w3r0pl34NOasTgPq4WEBMuuUA7Xwgy1xusa9WcOXUtoW0SbILFofQnzicd09";
+	["nc0i"] = "l-4LrQm5REu6lMpkrQL7OIyACvcJg6HAGtAxZKJIe9xvTcHx6RcVqIDoevT5WV";
 
 }
 
@@ -169,7 +169,7 @@ loginSettingsTitle.Name = "Title"
 loginSettingsTitle.Position = UDim2.new(0, 0, 0.025, 0)
 loginSettingsTitle.Size = UDim2.new(1, 0, 0.085, 0)
 loginSettingsTitle.BackgroundTransparency = 1
-loginSettingsTitle.Text = "Welcome "..plr.DisplayName.."!"
+loginSettingsTitle.Text = "Please Login"
 loginSettingsTitle.Font = "FredokaOne"
 loginSettingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 loginSettingsTitle.TextSize = 16
@@ -234,6 +234,114 @@ keyFrameTitle.Font = "FredokaOne"
 keyFrameTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 keyFrameTitle.TextSize = 16
 keyFrameTitle.ZIndex = 5
+
+
+
+--// Account Settings \\--
+
+local accountSettings = Instance.new("Frame", accountFrame)
+accountSettings.Name = "AccountSettings"
+accountSettings.Position = UDim2.new(0, 0, 0, 0)
+accountSettings.Size = UDim2.new(1, 0, 1, 0)
+accountSettings.BackgroundColor3 = Color3.fromRGB(46, 49, 54)
+accountSettings.ZIndex = 3
+
+local accountSettingsTitle = Instance.new("TextLabel", accountSettings)
+accountSettingsTitle.Name = "Title"
+accountSettingsTitle.Position = UDim2.new(0, 0, 0.025, 0)
+accountSettingsTitle.Size = UDim2.new(1, 0, 0.085, 0)
+accountSettingsTitle.BackgroundTransparency = 1
+accountSettingsTitle.Text = "Welcome back, "..plr.DisplayName.."!"
+accountSettingsTitle.Font = "FredokaOne"
+accountSettingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+accountSettingsTitle.TextSize = 16
+accountSettingsTitle.ZIndex = 4
+
+local playerKeyFrame = Instance.new("Frame", accountSettings)
+playerKeyFrame.Name = "PlayerKey"
+playerKeyFrame.Position = UDim2.new(0, 0, 0.2, 0)
+playerKeyFrame.Size = UDim2.new(1, 0, 0.15, 0)
+playerKeyFrame.BackgroundTransparency = 1
+playerKeyFrame.ZIndex = 4
+
+local playerKeyKey = Instance.new("TextLabel", playerKeyFrame)
+playerKeyKey.Name = "Key"
+playerKeyKey.Position = UDim2.new(0.253, 0, 0.19, 0)
+playerKeyKey.Size = UDim2.new(0.697, 0, 0.603, 0)
+playerKeyKey.BackgroundTransparency = 1
+playerKeyKey.TextColor3 = Color3.fromRGB(255, 255, 255)
+playerKeyKey.Font = "FredokaOne"
+playerKeyKey.TextScaled = true
+playerKeyKey.ZIndex = 6
+for i, v in pairs(keys) do
+	if plr.Name == i then
+		playerKeyKey.Text = v
+	end	
+end
+
+local playerKeyBack = Instance.new("TextLabel", playerKeyFrame)
+playerKeyBack.Name = "KeyBack"
+playerKeyBack.Position = UDim2.new(0.253, 0, 0, 0)
+playerKeyBack.Size = UDim2.new(0.697, 0, 1, 0)
+playerKeyBack.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+playerKeyBack.Text = ""
+playerKeyBack.ZIndex = 5
+
+local playerKeyTitle = Instance.new("TextLabel", playerKeyFrame)
+playerKeyTitle.Position = UDim2.new(0.049, 0, 0, 0)
+playerKeyTitle.Size = UDim2.new(0.193, 0, 1, 0)
+playerKeyTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+playerKeyTitle.Text = "Your Key:"
+playerKeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+playerKeyTitle.Font = "FredokaOne"
+playerKeyTitle.TextSize = 16
+playerKeyTitle.ZIndex = 5
+
+local keyDurationFrame = Instance.new("Frame", accountSettings)
+keyDurationFrame.Name = "KeyDuration"
+keyDurationFrame.Position = UDim2.new(0, 0, 0.4, 0)
+keyDurationFrame.Size = UDim2.new(1, 0, 0.15, 0)
+keyDurationFrame.BackgroundTransparency = 1
+keyDurationFrame.ZIndex = 4
+
+local keyDuration = Instance.new("TextLabel", keyDurationFrame)
+keyDuration.Name = "KeyDuration"
+keyDuration.Position = UDim2.new(0.253, 0, 0.19, 0)
+keyDuration.Size = UDim2.new(0.697, 0, 0.603, 0)
+keyDuration.BackgroundTransparency = 1
+keyDuration.TextColor3 = Color3.fromRGB(255, 255, 255)
+keyDuration.Font = "FredokaOne"
+keyDuration.TextSize = 16
+keyDuration.ZIndex = 6
+for i, v in pairs(keys) do
+	if plr.Name == i then
+		if string.sub(v, 1, 1) == "w" then
+			keyDuration.Text = "1 Week"
+		elseif string.sub(v, 1, 1) == "m" then
+			keyDuration.Text = "1 Month"
+		elseif string.sub(v, 1, 1) == "l" then
+			keyDuration.Text = "Lifetime"
+		end
+	end	
+end
+
+local keyDurationBack = Instance.new("TextLabel", keyDurationFrame)
+keyDurationBack.Name = "KeyDurationBack"
+keyDurationBack.Position = UDim2.new(0.253, 0, 0, 0)
+keyDurationBack.Size = UDim2.new(0.697, 0, 1, 0)
+keyDurationBack.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+keyDurationBack.Text = ""
+keyDurationBack.ZIndex = 5
+
+local keyDurationTitle = Instance.new("TextLabel", keyDurationFrame)
+keyDurationTitle.Position = UDim2.new(0.049, 0, 0, 0)
+keyDurationTitle.Size = UDim2.new(0.193, 0, 1, 0)
+keyDurationTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+keyDurationTitle.Text = "Key Duration:"
+keyDurationTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+keyDurationTitle.Font = "FredokaOne"
+keyDurationTitle.TextSize = 16
+keyDurationTitle.ZIndex = 5
 
 
 
@@ -551,6 +659,21 @@ keyFrameTitleCorner.CornerRadius = UDim.new(0, 8)
 local loginSettingsOutputCorner = Instance.new("UICorner", loginSettingsOutput)
 loginSettingsOutputCorner.CornerRadius = UDim.new(0, 10)
 
+local accountSettingsCorner = Instance.new("UICorner", accountSettings)
+accountSettingsCorner.CornerRadius = UDim.new(0, 10)
+
+local playerKeyBackCorner = Instance.new("UICorner", playerKeyBack)
+playerKeyBackCorner.CornerRadius = UDim.new(0, 8)
+
+local playerKeyTitleCorner = Instance.new("UICorner", playerKeyTitle)
+playerKeyTitleCorner.CornerRadius = UDim.new(0, 8)
+
+local keyDurationBackCorner = Instance.new("UICorner", keyDurationBack)
+keyDurationBackCorner.CornerRadius = UDim.new(0, 8)
+
+local keyDurationTitleCorner = Instance.new("UICorner", keyDurationTitle)
+keyDurationTitleCorner.CornerRadius = UDim.new(0, 8)
+
 
 
 --// Values \\--
@@ -589,6 +712,9 @@ openButton.MouseButton1Click:Connect(function()
 		if settingsIsOpen.Value == true then
 			settingsFrame.Visible = true
 		end
+		if accountIsOpen.Value == true then
+			accountFrame.Visible = true
+		end
 		if loginIsOpen.Value == true then
 			loginFrame.Visible = true
 		end
@@ -598,6 +724,7 @@ end)
 minimizeButton.MouseButton1Click:Connect(function()
 	if mainFrame.Transparency == 0 then
 		settingsFrame.Visible = false
+		accountFrame.Visible = false
 		loginFrame.Visible = false
 		for i = 0, 1, 0.1 do
 			wait()
@@ -613,7 +740,15 @@ end)
 
 settingsButton.MouseButton1Click:Connect(function()
 	if gui.Enabled and mainFrame.BackgroundTransparency == 0 and loginIsOpen.Value == false then
-		settingsIsOpen.Value = not settingsIsOpen.Value 
+		settingsIsOpen.Value = true
+		accountIsOpen.Value = false
+	end
+end)
+
+accountButton.MouseButton1Click:Connect(function()
+	if gui.Enabled and mainFrame.BackgroundTransparency == 0 and loginIsOpen.Value == false then
+		accountIsOpen.Value = true
+		settingsIsOpen.Value = false
 	end
 end)
 
@@ -672,6 +807,7 @@ loginButton.MouseButton1Click:Connect(function()
 			if keyFrameTextBox.Text == key then
 				loginIsOpen.Value = false
 				loginFrame.Visible = false
+				accountIsOpen.Value = true
 			else
 				keyFrameTextBox.Text = ""
 			end
@@ -685,9 +821,19 @@ end)
 
 settingsIsOpen.Changed:Connect(function()
 	if settingsIsOpen.Value == true then
+		accountFrame.Visible = false
 		settingsFrame.Visible = true
 	else
 		settingsFrame.Visible = false
+	end
+end)
+
+accountIsOpen.Changed:Connect(function()
+	if accountIsOpen.Value == true then
+		settingsFrame.Visible = false
+		accountFrame.Visible = true
+	else
+		accountFrame.Visible = false
 	end
 end)
 
