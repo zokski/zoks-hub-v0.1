@@ -36,8 +36,8 @@ local plrGui = plr:FindFirstChild("PlayerGui")
 
 local keys = {
 
-	["sniper_zok"] = "l-w3r0pl34NOasTgPq4WEBMuuUA7Xwgy1xusa9WcOXUtoW0SbILFofQnzicd09";
-	["nc0i"] = "l-4LrQm5REu6lMpkrQL7OIyACvcJg6HAGtAxZKJIe9xvTcHx6RcVqIDoevT5WV";
+	["sniper_zok"] = "l-7-19-w3r0pl34NOasTgPq4WEBMuuUA7Xwgy1xusa9WcOXUtoW0SbILFofQnzicd09";
+	["nc0i"] = "l-7-19-4LrQm5REu6lMpkrQL7OIyACvcJg6HAGtAxZKJIe9xvTcHx6RcVqIDoevT5WV";
 
 }
 
@@ -273,11 +273,6 @@ playerKeyKey.TextColor3 = Color3.fromRGB(255, 255, 255)
 playerKeyKey.Font = "FredokaOne"
 playerKeyKey.TextScaled = true
 playerKeyKey.ZIndex = 6
-for i, v in pairs(keys) do
-	if plr.Name == i then
-		playerKeyKey.Text = v
-	end	
-end
 
 local playerKeyBack = Instance.new("TextLabel", playerKeyFrame)
 playerKeyBack.Name = "KeyBack"
@@ -291,7 +286,7 @@ local playerKeyTitle = Instance.new("TextLabel", playerKeyFrame)
 playerKeyTitle.Position = UDim2.new(0.049, 0, 0, 0)
 playerKeyTitle.Size = UDim2.new(0.193, 0, 1, 0)
 playerKeyTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
-playerKeyTitle.Text = "Your Key:"
+playerKeyTitle.Text = "Your Key"
 playerKeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 playerKeyTitle.Font = "FredokaOne"
 playerKeyTitle.TextSize = 16
@@ -299,7 +294,7 @@ playerKeyTitle.ZIndex = 5
 
 local keyDurationFrame = Instance.new("Frame", accountSettings)
 keyDurationFrame.Name = "KeyDuration"
-keyDurationFrame.Position = UDim2.new(0, 0, 0.4, 0)
+keyDurationFrame.Position = UDim2.new(0, 0, 0.6, 0)
 keyDurationFrame.Size = UDim2.new(1, 0, 0.15, 0)
 keyDurationFrame.BackgroundTransparency = 1
 keyDurationFrame.ZIndex = 4
@@ -316,11 +311,11 @@ keyDuration.ZIndex = 6
 for i, v in pairs(keys) do
 	if plr.Name == i then
 		if string.sub(v, 1, 1) == "w" then
-			keyDuration.Text = "1 Week"
+			keyDuration.Text = "Key Lasts 1 Week"
 		elseif string.sub(v, 1, 1) == "m" then
-			keyDuration.Text = "1 Month"
+			keyDuration.Text = "Key Lasts 1 Month"
 		elseif string.sub(v, 1, 1) == "l" then
-			keyDuration.Text = "Lifetime"
+			keyDuration.Text = "Key Lasts Forever"
 		end
 	end	
 end
@@ -337,11 +332,89 @@ local keyDurationTitle = Instance.new("TextLabel", keyDurationFrame)
 keyDurationTitle.Position = UDim2.new(0.049, 0, 0, 0)
 keyDurationTitle.Size = UDim2.new(0.193, 0, 1, 0)
 keyDurationTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
-keyDurationTitle.Text = "Key Duration:"
+keyDurationTitle.Text = "Key Duration"
 keyDurationTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 keyDurationTitle.Font = "FredokaOne"
 keyDurationTitle.TextSize = 16
 keyDurationTitle.ZIndex = 5
+
+local keyInfoFrame = Instance.new("Frame", accountSettings)
+keyInfoFrame.Name = "KeyInfo"
+keyInfoFrame.Position = UDim2.new(0, 0, 0.4, 0)
+keyInfoFrame.Size = UDim2.new(1, 0, 0.15, 0)
+keyInfoFrame.BackgroundTransparency = 1
+keyInfoFrame.ZIndex = 4
+
+local keyInfo = Instance.new("TextLabel", keyInfoFrame)
+keyInfo.Name = "KeyInfo"
+keyInfo.Position = UDim2.new(0.253, 0, 0.19, 0)
+keyInfo.Size = UDim2.new(0.697, 0, 0.603, 0)
+keyInfo.BackgroundTransparency = 1
+keyInfo.TextColor3 = Color3.fromRGB(255, 255, 255)
+keyInfo.Font = "FredokaOne"
+keyInfo.TextSize = 16
+keyInfo.ZIndex = 6
+
+local keyDay = ""
+local keyMonth = ""
+
+for i, v in pairs(keys) do
+	if plr.Name == i then
+		if string.sub(v, 4, 4) == "-" then
+			if string.sub(v, 6, 6) == "-" then
+				keyDay = string.sub(v, 5, 5)
+				keyMonth = string.sub(v, 3, 3)
+			else
+				keyDay = string.sub(v, 5, 5)..string.sub(v, 6, 6)
+				keyMonth = string.sub(v, 3, 3)
+			end
+		else
+			if string.sub(v, 7, 7) == "-" then
+				keyDay = string.sub(v, 6, 6)
+				keyMonth = string.sub(v, 3, 3)..string.sub(v, 4, 4)
+			else
+				keyDay = string.sub(v, 6, 6)..string.sub(v, 7, 7)
+				keyMonth = string.sub(v, 3, 3)..string.sub(v, 4, 4)
+			end
+		end
+	end	
+end
+
+keyInfo.Text = ("Key Bought "..keyMonth.."/"..keyDay)
+
+local mainKey = ""
+
+for i, v in pairs(keys) do
+	if plr.Name == i then
+		mainKey = v
+	end	
+end
+
+local keyTable = mainKey:split(keyMonth.."-"..keyDay)
+for _,key in pairs(keyTable) do
+	if string.sub(key, 1, 1) == "-" then
+		mainKey = string.sub(key, 2)
+		playerKeyKey.Text = mainKey
+	end
+end
+
+local keyInfoBack = Instance.new("TextLabel", keyInfoFrame)
+keyInfoBack.Name = "KeyDurationBack"
+keyInfoBack.Position = UDim2.new(0.253, 0, 0, 0)
+keyInfoBack.Size = UDim2.new(0.697, 0, 1, 0)
+keyInfoBack.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+keyInfoBack.Text = ""
+keyInfoBack.ZIndex = 5
+
+local keyInfoTitle = Instance.new("TextLabel", keyInfoFrame)
+keyInfoTitle.Position = UDim2.new(0.049, 0, 0, 0)
+keyInfoTitle.Size = UDim2.new(0.193, 0, 1, 0)
+keyInfoTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
+keyInfoTitle.Text = "Bought"
+keyInfoTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+keyInfoTitle.Font = "FredokaOne"
+keyInfoTitle.TextSize = 16
+keyInfoTitle.ZIndex = 5
 
 
 
@@ -674,6 +747,12 @@ keyDurationBackCorner.CornerRadius = UDim.new(0, 8)
 local keyDurationTitleCorner = Instance.new("UICorner", keyDurationTitle)
 keyDurationTitleCorner.CornerRadius = UDim.new(0, 8)
 
+local keyInfoBackCorner = Instance.new("UICorner", keyInfoBack)
+keyInfoBackCorner.CornerRadius = UDim.new(0, 8)
+
+local keyInfoTitleCorner = Instance.new("UICorner", keyInfoTitle)
+keyInfoTitleCorner.CornerRadius = UDim.new(0, 8)
+
 
 
 --// Values \\--
@@ -872,6 +951,4 @@ end)
 --// Coming Soon \\--
 
 --> More Settings
---> Login System
---> Login Keys
 --> Auto Canva Size
