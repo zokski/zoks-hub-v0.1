@@ -46,7 +46,7 @@ local keys = {
 --// Main Gui \\--
 
 local gui = Instance.new("ScreenGui", plrGui)
-gui.Name = "zok's menu | v0.1"
+gui.Name = "Menu v0.1 | zok#0001"
 gui.ResetOnSpawn = true
 
 local mainFrame = Instance.new("Frame", gui)
@@ -110,7 +110,7 @@ titleLabel.Size = UDim2.new(1, 0, 0.7, 0)
 titleLabel.Text = gui.Name
 titleLabel.Font = "FredokaOne"
 titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-titleLabel.TextSize = 18
+titleLabel.TextSize = 14
 titleLabel.ZIndex = 3
 
 local closeButton = Instance.new("TextButton", topbarFrame)
@@ -166,13 +166,13 @@ loginSettings.ZIndex = 3
 
 local loginSettingsTitle = Instance.new("TextLabel", loginSettings)
 loginSettingsTitle.Name = "Title"
-loginSettingsTitle.Position = UDim2.new(0, 0, 0.025, 0)
+loginSettingsTitle.Position = UDim2.new(0, 0, 0.05, 0)
 loginSettingsTitle.Size = UDim2.new(1, 0, 0.085, 0)
 loginSettingsTitle.BackgroundTransparency = 1
 loginSettingsTitle.Text = "Please Login"
 loginSettingsTitle.Font = "FredokaOne"
 loginSettingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-loginSettingsTitle.TextSize = 16
+loginSettingsTitle.TextSize = 12
 loginSettingsTitle.ZIndex = 4
 
 local loginSettingsOutput = Instance.new("TextLabel", loginSettings)
@@ -196,7 +196,7 @@ loginButton.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 loginButton.Text = "LOGIN"
 loginButton.Font = "FredokaOne"
 loginButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-loginButton.TextSize = 16
+loginButton.TextSize = 14
 loginButton.ZIndex = 4
 
 local keyFrame = Instance.new("Frame", loginSettings)
@@ -232,7 +232,7 @@ keyFrameTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 keyFrameTitle.Text = "Enter Key:"
 keyFrameTitle.Font = "FredokaOne"
 keyFrameTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-keyFrameTitle.TextSize = 16
+keyFrameTitle.TextSize = 12
 keyFrameTitle.ZIndex = 5
 
 
@@ -248,18 +248,18 @@ accountSettings.ZIndex = 3
 
 local accountSettingsTitle = Instance.new("TextLabel", accountSettings)
 accountSettingsTitle.Name = "Title"
-accountSettingsTitle.Position = UDim2.new(0, 0, 0.025, 0)
+accountSettingsTitle.Position = UDim2.new(0, 0, 0.05, 0)
 accountSettingsTitle.Size = UDim2.new(1, 0, 0.085, 0)
 accountSettingsTitle.BackgroundTransparency = 1
 accountSettingsTitle.Text = "Welcome back, "..plr.DisplayName.."!"
 accountSettingsTitle.Font = "FredokaOne"
 accountSettingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-accountSettingsTitle.TextSize = 16
+accountSettingsTitle.TextSize = 12
 accountSettingsTitle.ZIndex = 4
 
 local playerKeyFrame = Instance.new("Frame", accountSettings)
 playerKeyFrame.Name = "PlayerKey"
-playerKeyFrame.Position = UDim2.new(0, 0, 0.2, 0)
+playerKeyFrame.Position = UDim2.new(0, 0, 0.175, 0)
 playerKeyFrame.Size = UDim2.new(1, 0, 0.15, 0)
 playerKeyFrame.BackgroundTransparency = 1
 playerKeyFrame.ZIndex = 4
@@ -283,18 +283,18 @@ playerKeyBack.Text = ""
 playerKeyBack.ZIndex = 5
 
 local playerKeyTitle = Instance.new("TextLabel", playerKeyFrame)
-playerKeyTitle.Position = UDim2.new(0.049, 0, 0, 0)
+playerKeyTitle.Position = UDim2.new(0.05, 0, 0, 0)
 playerKeyTitle.Size = UDim2.new(0.193, 0, 1, 0)
 playerKeyTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 playerKeyTitle.Text = "Your Key"
 playerKeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 playerKeyTitle.Font = "FredokaOne"
-playerKeyTitle.TextSize = 16
+playerKeyTitle.TextSize = 12
 playerKeyTitle.ZIndex = 5
 
 local keyDurationFrame = Instance.new("Frame", accountSettings)
 keyDurationFrame.Name = "KeyDuration"
-keyDurationFrame.Position = UDim2.new(0, 0, 0.6, 0)
+keyDurationFrame.Position = UDim2.new(0, 0, 0.575, 0)
 keyDurationFrame.Size = UDim2.new(1, 0, 0.15, 0)
 keyDurationFrame.BackgroundTransparency = 1
 keyDurationFrame.ZIndex = 4
@@ -306,16 +306,16 @@ keyDuration.Size = UDim2.new(0.697, 0, 0.603, 0)
 keyDuration.BackgroundTransparency = 1
 keyDuration.TextColor3 = Color3.fromRGB(255, 255, 255)
 keyDuration.Font = "FredokaOne"
-keyDuration.TextSize = 16
+keyDuration.TextSize = 12
 keyDuration.ZIndex = 6
 for i, v in pairs(keys) do
 	if plr.Name == i then
 		if string.sub(v, 1, 1) == "w" then
-			keyDuration.Text = "Key Lasts 1 Week"
+			keyDuration.Text = "Lasts 1 Week"
 		elseif string.sub(v, 1, 1) == "m" then
-			keyDuration.Text = "Key Lasts 1 Month"
+			keyDuration.Text = "Lasts 1 Month"
 		elseif string.sub(v, 1, 1) == "l" then
-			keyDuration.Text = "Key Lasts Forever"
+			keyDuration.Text = "Lasts Forever"
 		end
 	end	
 end
@@ -329,18 +329,18 @@ keyDurationBack.Text = ""
 keyDurationBack.ZIndex = 5
 
 local keyDurationTitle = Instance.new("TextLabel", keyDurationFrame)
-keyDurationTitle.Position = UDim2.new(0.049, 0, 0, 0)
+keyDurationTitle.Position = UDim2.new(0.05, 0, 0, 0)
 keyDurationTitle.Size = UDim2.new(0.193, 0, 1, 0)
 keyDurationTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
-keyDurationTitle.Text = "Key Duration"
+keyDurationTitle.Text = "Duration"
 keyDurationTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 keyDurationTitle.Font = "FredokaOne"
-keyDurationTitle.TextSize = 16
+keyDurationTitle.TextSize = 12
 keyDurationTitle.ZIndex = 5
 
 local keyInfoFrame = Instance.new("Frame", accountSettings)
 keyInfoFrame.Name = "KeyInfo"
-keyInfoFrame.Position = UDim2.new(0, 0, 0.4, 0)
+keyInfoFrame.Position = UDim2.new(0, 0, 0.375, 0)
 keyInfoFrame.Size = UDim2.new(1, 0, 0.15, 0)
 keyInfoFrame.BackgroundTransparency = 1
 keyInfoFrame.ZIndex = 4
@@ -352,7 +352,7 @@ keyInfo.Size = UDim2.new(0.697, 0, 0.603, 0)
 keyInfo.BackgroundTransparency = 1
 keyInfo.TextColor3 = Color3.fromRGB(255, 255, 255)
 keyInfo.Font = "FredokaOne"
-keyInfo.TextSize = 16
+keyInfo.TextSize = 12
 keyInfo.ZIndex = 6
 
 local keyDay = ""
@@ -380,13 +380,34 @@ for i, v in pairs(keys) do
 	end	
 end
 
-keyInfo.Text = ("Key Bought "..keyMonth.."/"..keyDay)
-
 local mainKey = ""
 
 for i, v in pairs(keys) do
 	if plr.Name == i then
 		mainKey = v
+	end	
+end
+
+local keyMonths = {
+	
+	["1"] = "January";
+	["2"] = "February";
+	["3"] = "March";
+	["4"] = "April";
+	["5"] = "May";
+	["6"] = "June";
+	["7"] = "July";
+	["8"] = "August";
+	["9"] = "September";
+	["10"] = "October";
+	["11"] = "November";
+	["12"] = "December";
+	
+}
+
+for i, v in pairs(keyMonths) do
+	if i == keyMonth then
+		keyInfo.Text = ("Purchased on "..v.." "..keyDay)
 	end	
 end
 
@@ -407,13 +428,13 @@ keyInfoBack.Text = ""
 keyInfoBack.ZIndex = 5
 
 local keyInfoTitle = Instance.new("TextLabel", keyInfoFrame)
-keyInfoTitle.Position = UDim2.new(0.049, 0, 0, 0)
+keyInfoTitle.Position = UDim2.new(0.05, 0, 0, 0)
 keyInfoTitle.Size = UDim2.new(0.193, 0, 1, 0)
 keyInfoTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
-keyInfoTitle.Text = "Bought"
+keyInfoTitle.Text = "Purchase"
 keyInfoTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 keyInfoTitle.Font = "FredokaOne"
-keyInfoTitle.TextSize = 16
+keyInfoTitle.TextSize = 12
 keyInfoTitle.ZIndex = 5
 
 
@@ -429,20 +450,20 @@ plrSettings.ZIndex = 3
 
 local plrSettingsTitle = Instance.new("TextLabel", plrSettings)
 plrSettingsTitle.Name = "Title"
-plrSettingsTitle.Position = UDim2.new(0, 0, 0.025, 0)
+plrSettingsTitle.Position = UDim2.new(0, 0, 0.05, 0)
 plrSettingsTitle.Size = UDim2.new(1, 0, 0.085, 0)
 plrSettingsTitle.BackgroundTransparency = 1
 plrSettingsTitle.ZIndex = 4
 plrSettingsTitle.Text = "Player Settings"
 plrSettingsTitle.Font = "FredokaOne"
 plrSettingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-plrSettingsTitle.TextSize = 16
+plrSettingsTitle.TextSize = 12
 
 local plrSettingsFrame = Instance.new("ScrollingFrame", plrSettings)
 plrSettingsFrame.Name = "PlayerSettingsFrame"
 plrSettingsFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-plrSettingsFrame.Position = UDim2.new(0.5, 0, 0.56, 0)
-plrSettingsFrame.Size = UDim2.new(1, 0, 0.85, 0)
+plrSettingsFrame.Position = UDim2.new(0.5, 0, 0.575, 0)
+plrSettingsFrame.Size = UDim2.new(1, 0, 0.8, 0)
 plrSettingsFrame.BackgroundTransparency = 1
 plrSettingsFrame.ZIndex = 4
 plrSettingsFrame.CanvasSize = UDim2.new(0, 0, 0, 100)
@@ -460,7 +481,7 @@ confirmPlrSettings.Text = " "
 local walkSpeedFrame = Instance.new("Frame", plrSettingsFrame)
 walkSpeedFrame.Name = "WalkSpeed"
 walkSpeedFrame.Position = UDim2.new(0, 0, 0, 0)
-walkSpeedFrame.Size = UDim2.new(1, 0, 0.1, 0)
+walkSpeedFrame.Size = UDim2.new(1, 0, 0.15, 0)
 walkSpeedFrame.BackgroundTransparency = 1
 walkSpeedFrame.ZIndex = 5
 
@@ -473,7 +494,7 @@ walkSpeedTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 walkSpeedTextBox.PlaceholderText = "16"
 walkSpeedTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 walkSpeedTextBox.Font = "FredokaOne"
-walkSpeedTextBox.TextSize = 16
+walkSpeedTextBox.TextSize = 12
 walkSpeedTextBox.ZIndex = 6
 
 local walkSpeedTitle = Instance.new("TextLabel", walkSpeedFrame)
@@ -483,13 +504,13 @@ walkSpeedTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 walkSpeedTitle.Text = "WalkSpeed:"
 walkSpeedTitle.Font = "FredokaOne"
 walkSpeedTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-walkSpeedTitle.TextSize = 16
+walkSpeedTitle.TextSize = 12
 walkSpeedTitle.ZIndex = 6
 
 local jumpPowerFrame = Instance.new("Frame", plrSettingsFrame)
 jumpPowerFrame.Name = "JumpPower"
-jumpPowerFrame.Position = UDim2.new(0, 0, 0.125, 0)
-jumpPowerFrame.Size = UDim2.new(1, 0, 0.1, 0)
+jumpPowerFrame.Position = UDim2.new(0, 0, 0.2, 0)
+jumpPowerFrame.Size = UDim2.new(1, 0, 0.15, 0)
 jumpPowerFrame.BackgroundTransparency = 1
 jumpPowerFrame.ZIndex = 5
 
@@ -502,7 +523,7 @@ jumpPowerTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 jumpPowerTextBox.PlaceholderText = "50"
 jumpPowerTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 jumpPowerTextBox.Font = "FredokaOne"
-jumpPowerTextBox.TextSize = 16
+jumpPowerTextBox.TextSize = 12
 jumpPowerTextBox.ZIndex = 6
 
 local jumpPowerTitle = Instance.new("TextLabel", jumpPowerFrame)
@@ -512,13 +533,13 @@ jumpPowerTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 jumpPowerTitle.Text = "JumpPower:"
 jumpPowerTitle.Font = "FredokaOne"
 jumpPowerTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-jumpPowerTitle.TextSize = 16
+jumpPowerTitle.TextSize = 12
 jumpPowerTitle.ZIndex = 6
 
 local goToFrame = Instance.new("Frame", plrSettingsFrame)
 goToFrame.Name = "GoTo"
-goToFrame.Position = UDim2.new(0, 0, 0.25, 0)
-goToFrame.Size = UDim2.new(1, 0, 0.1, 0)
+goToFrame.Position = UDim2.new(0, 0, 0.4, 0)
+goToFrame.Size = UDim2.new(1, 0, 0.15, 0)
 goToFrame.BackgroundTransparency = 1
 goToFrame.ZIndex = 5
 
@@ -531,7 +552,7 @@ goToTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 goToTextBox.PlaceholderText = "Player"
 goToTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 goToTextBox.Font = "FredokaOne"
-goToTextBox.TextSize = 16
+goToTextBox.TextSize = 12
 goToTextBox.ZIndex = 6
 
 local goToTitle = Instance.new("TextLabel", goToFrame)
@@ -541,7 +562,7 @@ goToTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 goToTitle.Text = "Go To:"
 goToTitle.Font = "FredokaOne"
 goToTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-goToTitle.TextSize = 16
+goToTitle.TextSize = 12
 goToTitle.ZIndex = 6
 
 
@@ -557,20 +578,20 @@ menuSettings.ZIndex = 3
 
 local menuSettingsTitle = Instance.new("TextLabel", menuSettings)
 menuSettingsTitle.Name = "Title"
-menuSettingsTitle.Position = UDim2.new(0, 0, 0.025, 0)
+menuSettingsTitle.Position = UDim2.new(0, 0, 0.05, 0)
 menuSettingsTitle.Size = UDim2.new(1, 0, 0.085, 0)
 menuSettingsTitle.BackgroundTransparency = 1
 menuSettingsTitle.ZIndex = 4
 menuSettingsTitle.Text = "Menu Settings"
 menuSettingsTitle.Font = "FredokaOne"
 menuSettingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-menuSettingsTitle.TextSize = 16
+menuSettingsTitle.TextSize = 12
 
 local menuSettingsFrame = Instance.new("ScrollingFrame", menuSettings)
 menuSettingsFrame.Name = "MenuSettingsFrame"
 menuSettingsFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-menuSettingsFrame.Position = UDim2.new(0.5, 0, 0.56, 0)
-menuSettingsFrame.Size = UDim2.new(1, 0, 0.85, 0)
+menuSettingsFrame.Position = UDim2.new(0.5, 0, 0.575, 0)
+menuSettingsFrame.Size = UDim2.new(1, 0, 0.8, 0)
 menuSettingsFrame.BackgroundTransparency = 1
 menuSettingsFrame.ZIndex = 4
 menuSettingsFrame.CanvasSize = UDim2.new(0, 0, 0, 100)
@@ -588,7 +609,7 @@ confirmMenuSettings.Text = " "
 local colorCodeFrame = Instance.new("Frame", menuSettingsFrame)
 colorCodeFrame.Name = "ColorCode"
 colorCodeFrame.Position = UDim2.new(0, 0, 0, 0)
-colorCodeFrame.Size = UDim2.new(1, 0, 0.1, 0)
+colorCodeFrame.Size = UDim2.new(1, 0, 0.15, 0)
 colorCodeFrame.BackgroundTransparency = 1
 colorCodeFrame.ZIndex = 5
 
@@ -601,7 +622,7 @@ colorCodeTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 colorCodeTextBox.PlaceholderText = "#1e2124"
 colorCodeTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 colorCodeTextBox.Font = "FredokaOne"
-colorCodeTextBox.TextSize = 16
+colorCodeTextBox.TextSize = 12
 colorCodeTextBox.ZIndex = 6
 
 local colorCodeTitle = Instance.new("TextLabel", colorCodeFrame)
@@ -611,13 +632,13 @@ colorCodeTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 colorCodeTitle.Text = "Color Code:"
 colorCodeTitle.Font = "FredokaOne"
 colorCodeTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-colorCodeTitle.TextSize = 16
+colorCodeTitle.TextSize = 12
 colorCodeTitle.ZIndex = 6
 
 local hotkeyFrame = Instance.new("Frame", menuSettingsFrame)
 hotkeyFrame.Name = "Hotkey"
-hotkeyFrame.Position = UDim2.new(0, 0, 0.125, 0)
-hotkeyFrame.Size = UDim2.new(1, 0, 0.1, 0)
+hotkeyFrame.Position = UDim2.new(0, 0, 0.2, 0)
+hotkeyFrame.Size = UDim2.new(1, 0, 0.15, 0)
 hotkeyFrame.BackgroundTransparency = 1
 hotkeyFrame.ZIndex = 5
 
@@ -630,7 +651,7 @@ hotkeyTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 hotkeyTextBox.PlaceholderText = "m"
 hotkeyTextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 hotkeyTextBox.Font = "FredokaOne"
-hotkeyTextBox.TextSize = 16
+hotkeyTextBox.TextSize = 12
 hotkeyTextBox.ZIndex = 6
 
 local hotkeyTitle = Instance.new("TextLabel", hotkeyFrame)
@@ -640,7 +661,7 @@ hotkeyTitle.BackgroundColor3 = Color3.fromRGB(30, 33, 36)
 hotkeyTitle.Text = "Hotkey:"
 hotkeyTitle.Font = "FredokaOne"
 hotkeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-hotkeyTitle.TextSize = 16
+hotkeyTitle.TextSize = 12
 hotkeyTitle.ZIndex = 6
 
 
@@ -950,5 +971,9 @@ end)
 
 --// Coming Soon \\--
 
+--> New Menu Look
+--> Game Page
+--> Player Page
+--> Credits Page
 --> More Settings
 --> Auto Canva Size
